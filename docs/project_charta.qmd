@@ -1,43 +1,106 @@
 # Project Charta
 ## Context and Scope
-Describe the context (domain/business area) and topic of the visualization project. Which topical aspects should be addressed? Which question(s) should the data visualization project answer? What are the expected benefits of the project? Where should the visualization product be published (e.g. website, app, intranet)?
+1.1 Context and Scope
+Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG) an. Angesichts verschärfter regulatorischer Anforderungen in der Schweiz (Art. 964a OR) und der EU (CSRD) müssen Unternehmen ihre Scope-3-Emissionen, zu denen Geschäftsreisen zählen, präzise erfassen und reduzieren.
+
+Themenaspekte:
+
+Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2024.
+
+Gegenüberstellung von Ist-Emissionen und vordefinierten CO₂-Budgets (Absenkpfad) pro Business Unit (BU1–BU4).
+
+Berücksichtigung wissenschaftlicher Unsicherheiten durch Darstellung verschiedener Szenarien (RFI 2.0 vs. RFI 2.7).
+
+Zentrale Fragestellungen:
+
+Befinden sich die Business Units auf dem geplanten Absenkpfad oder drohen Budgetüberschreitungen?
+
+Welche strukturellen Treiber (Reisezwecke wie "internal_meeting", Transportmodi, Langstrecken) verursachen den grössten Fussabdruck?
+
+Welche Hebel (Modal Shift von Flug auf Bahn) bieten das grösste Einsparpotenzial?
+
+Nutzen: Strategische Steuerung der Reisetätigkeit zur Einhaltung der Netto-Null-Ziele bis 2050.
+Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im internen Firmennetzwerk.
+
 
 ## Project Objectives and Success Criteria
-Describe the objectives **from the client/stakeholder perspective**. For example: "Enable users to understand the distribution of sales across different regions". Try to be as specific as possible, but restrict to the concrete needs formulated by the client/stakeholders. For example: if a dashboard is needed explicitly, then state it here, otherwise leave the form of the visualization product open.
+Projektziele (Stakeholder-Perspektive):
 
-Formulate success criteria (from the client/stakeholder perspective): qualitative objectives and, wherever possible, corresponding quantitative metrics with target values to be achieved within the project. These objectives should directly address the pains and gains identified in the user analysis.
+Transparenz schaffen: BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
 
-It is also helpful to specify what is explicitly excluded from the project objectives (out of scope).
+Entscheidungsunterstützung: Identifikation von "Quick Wins" (z. B. Kurzstreckenflüge durch Bahn ersetzen, wo Alternativen vorhanden sind).
+
+Bewusstsein schärfen: Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
+
+Erfolgskriterien:
+
+Qualitativ: Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
+
+Quantitativ: Nutzer können innerhalb von 30 Sekunden die Business Unit mit der höchsten Budgetabweichung identifizieren. Mindestens 80 % der Testnutzer interpretieren den Unterschied zwischen RFI 2.0 und 2.7 korrekt.
+
+Out of Scope: Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-Tracking (Daten-Update erfolgt monatlich/quartalsweise).
 
 ## Stakeholder Analysis
-List the people involved in and affected by the project. Describe their goals and relationships with each other. Visualisation in the form of a stakeholder map can provide a quick overview.
+| Stakeholder                          | Ziele                                                                 | Beziehung                                                   |
+|-------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------|
+| Chief Sustainability Officer (CSO)  | Erreichung der Klimaziele; fehlerfreies Reporting gemäss Standards (GRI/ESRS). | Projektsponsor; gibt regulatorischen Rahmen vor.           |
+| Business Unit Heads (BU1–4)         | Erfüllung der operativen Ziele bei gleichzeitigem Einhalten des CO₂-Budgets. | Primäre Endnutzer; stehen im internen Wettbewerb.          |
+| Finance / Controlling               | Kosten-Nutzen-Analyse von Reisebeschränkungen; Integration von CO₂-Daten in Finanzberichte. | Liefert Kostendaten; überwacht Budgetdisziplin.            |
+| Reisende (Mitarbeitende)            | Beibehaltung der Mobilität bei minimalem administrativen Aufwand.     | Datenquellen; von Reiserichtlinien direkt betroffen.        |
 
 ## User Analysis
-Analyse the target audience of the visualization product and create at least 2 personas with **relevant attributes** such as domain expertise, data literacy, technical environment (devices, screen sizes), frequency of use etc. Amend each persona with the dimensions of the customer profile side in the Value Proposition Canvas @Osterwalder2014:
+Persona 1: Dr. Müller, CSO (The Strategic Navigator)
+Expertise: Hohe Domänenexpertise in Nachhaltigkeit, mittlere Data Literacy.
+Technik: Desktop & Tablet (für Meetings).
+User Tasks: Überwachung des aggregierten Absenkpfads der Gesamtorganisation; Vorbereitung des jährlichen Nachhaltigkeitsberichts.
+Pains: Intransparenz über die Treiber in den dezentralen BUs; Sorge vor Greenwashing-Vorwürfen bei falscher Metrik-Wahl.
+Gains: Sicherheit bei strategischen Entscheidungen; klare Kommunikation des Fortschritts gegenüber dem Verwaltungsrat.
 
-* **User tasks** (jobs): What tasks are users trying to accomplish? Consider functional jobs (e.g. analysing data, making decisions), social jobs (e.g. reporting to stakeholders, collaborating with colleagues) and emotional jobs (e.g. feeling confident in their decisions).
-* **Pains**: What obstacles, risks or undesired outcomes do users currently face? What makes their current approach frustrating or inefficient?
-* **Gains**: What outcomes and benefits do users expect or desire? What would exceed their expectations?
+Persona 2: Marc, Finanzcontroller (The Analytical Auditor)
+Expertise: Sehr hohe Data Literacy, Fokus auf KPIs und Abweichungsanalysen.
+Technik: Multi-Monitor-Setup; braucht Exportfunktionen (Excel/CSV).
+User Tasks: Abgleich von Reisekosten (CHF) mit Emissionen; Identifikation von ineffizienten Ausreissern (z. B. teure Last-Minute-Business-Flüge).
+Pains: Manuelle Aufbereitung fragmentierter Datenquellen; unklare Zuständigkeiten für CO₂-Budgets.
+Gains: Automatisierte Berichte; "Audit-Ready"-Datenbasis durch klare Dokumentation der Emissionsfaktoren.
 
+Value Proposition Canvas (Auszug):
+Jobs: Budgeteinhaltung überwachen, Optimierungspotenzial finden.
+Pains: Datenkomplexität (RFI), mühsame Fehlersuche in Tabellen.
+Gains: Sofortige Sichtbarkeit von Hotspots; vertrauenswürdige Datengrundlage für Policy-Änderungen.
 
 ## Situation Assessment
-Describe the available resources (data, personnel, material, software/tools, infrastructure, etc.) and time as well as restrictions and constraints. Possible risks that may arise during the project are also identified.
+Ressourcen: Datensätze travel_data.csv (Transaktionsdaten) und co2_budgets.csv (Zielvorgaben). Team aus 3 Personen mit Python-Kenntnissen.
 
+Tools: Python (Pandas, Plotly/Altair), Quarto für die Dokumentation, GitHub für Versionierung.
+
+Einschränkungen: Projektlaufzeit gemäss Kurssemester. Fokus auf Nachvollziehbarkeit und Reproduzierbarkeit (kein Excel für Analysen).
+
+Risiken: Inkonsistente IATA-Codes; Fehlinterpretation der RFI-Szenarien durch Endnutzer ; Fehlende Daten für bestimmte Subunits in frühen Jahren.
 
 ## Visualization Concept
-Translate the project objectives into a concrete visualization concept. This corresponds to the value map side of the Value Proposition Canvas [@Osterwalder2014] – describe how the proposed visualization product addresses the users' tasks, relieves their pains and creates gains. Address the following aspects:
+Product Form: Interaktives Dashboard mit einer narrativen "Data Story"-Struktur (Context -> Insight -> Action).
 
-* **Product form**: Composition of the visualization product – dashboard, data story, infographic, exploratory tool, etc.
-* **Visual encodings**: Types of charts and visualizations to be used – e.g. bar chart, line chart, scatter plot, map, etc.
-* **Interactivity**: Static vs. dynamic/interactive elements – filtering, drill-down, tooltips, linked views, etc.
-* **Narrative and annotation**: Text elements, storytelling structure, annotations and contextual information.
-* **Target medium and integration**: Embedding in the target environment – e.g. website, intranet, app, print, etc.
+Visual Encodings:
 
-For each design decision, articulate the intended value along three dimensions:
+Bullet Graphs: Vergleich von Ist-Emissionen vs. Budget pro BU (platzsparender als Tachos).
 
-* **Cognitive and analytical value**: How does the design amplify the user's ability to detect patterns, identify outliers, understand distributions or discover relationships [@card1999; @vanwijk2005]?
-* **Communicative value**: How does the design support the communication of information to the target audience profile(s)? 
-* **Experiential and aesthetic value**: How do the visual and interactive qualities of the design foster engagement, trust and willingness to adopt the product in practice?
+Sankey Diagram: Darstellung des Flusses von BU über Reisezweck zum Transportmodus (Identifikation von Treibern).
+
+Line Charts: Darstellung des Absenkpfads über die Zeit (2017–2024).
+
+Choropleth Map: Visualisierung der meistbeflogenen Routen mit Hervorhebung von Strecken, auf denen Zug-Alternativen existieren.
+
+Interactivity: Filter für Zeiträume, Business Units und Reisezwecke; Tooltips zur Erläuterung der RFI-Berechnung.
+
+Narrative: Storytelling-Ansatz "Der Kampf gegen den Absenkpfad" – Dokumentation des Fortschritts und Aufzeigen notwendiger Kurskorrekturen.
+
+Intended Value:
+
+Cognitive: Bullet Graphs ermöglichen sofortigen Längenvergleich statt ungenauer Winkelinterpretation bei Gauges.
+
+Communicative: Klare Annotationen erklären den "Well-to-Wake"-Ansatz und die Bedeutung von RFI.
+
+Experiential: Ein ästhetisches, funktionales Design schafft Vertrauen und fördert die Akzeptanz des Tools als Steuerungsinstanz.
 
 Justify the concept by mapping it explicitly to the project objectives and the user needs identified in the user analysis.
 
@@ -47,34 +110,32 @@ Divide the project into individual phases, describe them briefly and draw up a p
 
 ```{mermaid}
 %%| label: fig-project-plan
-%%| fig-cap: Preliminary project plan in the form of a Gantt chart.
+%%| fig-cap: Vorläufiger Zeitplan des Visualisierungsprojekts.
 gantt
-    title Project Plan
+    title Projekt Zeitplan 2026
     dateFormat YYYY-MM-DD
-    tickInterval 5day
-    section Project Understanding
-        Initiation workshop and context analysis     :a1, 2024-07-01, 1d
-        Stakeholder and user analysis     :a3, 2024-07-02, 5d
-        Situation assessment    :a4, 2024-07-06, 1d
-        Project objectives and visualization concept    :a5, 2024-07-07, 1d
-        Sign project charta: milestone, m1, 2024-07-08, 1d
-    
-    section Data Acquisition and Exploration
-        Acquire data :a6, 2024-07-08, 3d
-        Exploratory data analysis   :a7, 2024-07-09, 2d
-        Discuss data report: milestone, m2, 2024-07-11, 1d
-        
-    section Visual Encoding and Design
-        Overview charts   :a8, 2024-07-11, 3d
-        Maps :a9, 2024-07-11, 5d
-        Implement Dashboard prototype :a10, 2024-07-16, 5d
-        Complete visualization report :a10, 2024-07-21, 1d
-    section Evaluation
-        Prepare presentation :a10, 2024-07-22, 2d
-        Project presentation : milestone, m2, 2024-07-24, 4m
+    tickInterval 1week
+    section Vorbereitung
+        Kontextanalyse & Domänenrecherche (RFI)    :a1, 2026-03-01, 7d
+        Stakeholder- & Nutzeranalyse (Personas)    :a2, 2026-03-08, 7d
+        Sign Project Charta                        :milestone, m1, 2026-03-15, 0d
+    section Daten & Exploration
+        Datenbereinigung (IATA, Einheiten)         :a3, 2026-03-16, 10d
+        Explorative Datenanalyse (EDA)             :a4, 2026-03-26, 7d
+        Datenbericht Besprechung                   :milestone, m2, 2026-04-02, 0d
+    section Design & Entwicklung
+        Erstellung Vis-Konzept (Skizzen)           :a5, 2026-04-03, 5d
+        Entwicklung Bullet- & Sankey-Charts        :a6, 2026-04-08, 10d
+        Dashboard Prototyping (Streamlit)          :a7, 2026-04-18, 14d
+    section Finalisierung
+        Storytelling & Annotationen                :a8, 2026-05-02, 7d
+        Dokumentation & Peer Review                :a9, 2026-05-09, 7d
+        Abschlusspräsentation                      :milestone, m3, 2026-05-20, 0d
 ```
 
 See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
 
 ## Roles and Contact Details
-List the people involved in the development work here with their role titles, tasks and contact details.
+Projektleitung & Storytelling: Fiton Sallahaj, Verantwortlich für Stakeholder-Alignment und narrativen Fluss.
+Data Engineer: Christopher Zickler, Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI).
+Visualisierungs-Designer: Villavarayasingam Gopigan, Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts.
