@@ -2,7 +2,7 @@
 ## Context and Scope
 Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG) an. Angesichts verschärfter regulatorischer Anforderungen in der Schweiz (Art. 964a OR) und der EU (CSRD) müssen Unternehmen ihre Scope-3-Emissionen, zu denen Geschäftsreisen zählen, präzise erfassen und reduzieren.
 
-Themenaspekte:
+#### Themenaspekte:
 
 - Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2024.
 
@@ -10,7 +10,7 @@ Themenaspekte:
 
 Berücksichtigung wissenschaftlicher Unsicherheiten durch Darstellung verschiedener Szenarien (RFI 2.0 vs. RFI 2.7).
 
-Zentrale Fragestellungen:
+#### Zentrale Fragestellungen:
 
 1. Befinden sich die Business Units auf dem geplanten Absenkpfad oder drohen Budgetüberschreitungen?
 
@@ -23,7 +23,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 
 
 ## Project Objectives and Success Criteria
-Projektziele (Stakeholder-Perspektive):
+#### Projektziele (Stakeholder-Perspektive):
 
 - Transparenz schaffen: BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
 
@@ -31,13 +31,13 @@ Projektziele (Stakeholder-Perspektive):
 
 - Bewusstsein schärfen: Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
 
-Erfolgskriterien:
+#### Erfolgskriterien:
 
 - Qualitativ: Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
 
 - Quantitativ: Nutzer können innerhalb von 30 Sekunden die Business Unit mit der höchsten Budgetabweichung identifizieren. Mindestens 80 % der Testnutzer interpretieren den Unterschied zwischen RFI 2.0 und 2.7 korrekt.
 
-Out of Scope: Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-Tracking (Daten-Update erfolgt monatlich/quartalsweise).
+**Out of Scope:** Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-Tracking (Daten-Update erfolgt monatlich/quartalsweise).
 
 ## Stakeholder Analysis
 | Stakeholder                          | Ziele                                                                 | Beziehung                                                   |
@@ -49,57 +49,57 @@ Out of Scope: Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-
 
 ## User Analysis
 ### Persona 1: Dr. Müller, CSO (The Strategic Navigator)
-- Expertise: Hohe Domänenexpertise in Nachhaltigkeit, mittlere Data Literacy.
-- Technik: Desktop & Tablet (für Meetings).
-- User Tasks: Überwachung des aggregierten Absenkpfads der Gesamtorganisation; Vorbereitung des jährlichen Nachhaltigkeitsberichts.
-- Pains: Intransparenz über die Treiber in den dezentralen BUs; Sorge vor Greenwashing-Vorwürfen bei falscher Metrik-Wahl.
-- Gains: Sicherheit bei strategischen Entscheidungen; klare Kommunikation des Fortschritts gegenüber dem Verwaltungsrat.
+- **Expertise:** Hohe Domänenexpertise in Nachhaltigkeit, mittlere Data Literacy.
+- **Technik:** Desktop & Tablet (für Meetings).
+- **User Tasks:** Überwachung des aggregierten Absenkpfads der Gesamtorganisation; Vorbereitung des jährlichen Nachhaltigkeitsberichts.
+- **Pains:** Intransparenz über die Treiber in den dezentralen BUs; Sorge vor Greenwashing-Vorwürfen bei falscher Metrik-Wahl.
+- **Gains:** Sicherheit bei strategischen Entscheidungen; klare Kommunikation des Fortschritts gegenüber dem Verwaltungsrat.
 
 ### Persona 2: Marc, Finanzcontroller (The Analytical Auditor)
-- Expertise: Sehr hohe Data Literacy, Fokus auf KPIs und Abweichungsanalysen.
-- Technik: Multi-Monitor-Setup; braucht Exportfunktionen (Excel/CSV).
-- User Tasks: Abgleich von Reisekosten (CHF) mit Emissionen; Identifikation von ineffizienten Ausreissern (z. B. teure Last-Minute-Business-Flüge).
-- Pains: Manuelle Aufbereitung fragmentierter Datenquellen; unklare Zuständigkeiten für CO₂-Budgets.
-- Gains: Automatisierte Berichte; "Audit-Ready"-Datenbasis durch klare Dokumentation der Emissionsfaktoren.
+- **Expertise:** Sehr hohe Data Literacy, Fokus auf KPIs und Abweichungsanalysen.
+- **Technik:** Multi-Monitor-Setup; braucht Exportfunktionen (Excel/CSV).
+- **User Tasks:** Abgleich von Reisekosten (CHF) mit Emissionen; Identifikation von ineffizienten Ausreissern (z. B. teure Last-Minute-Business-Flüge).
+- **Pains:** Manuelle Aufbereitung fragmentierter Datenquellen; unklare Zuständigkeiten für CO₂-Budgets.
+- **Gains:** Automatisierte Berichte; "Audit-Ready"-Datenbasis durch klare Dokumentation der Emissionsfaktoren.
 
-Value Proposition Canvas (Auszug):
-- Jobs: Budgeteinhaltung überwachen, Optimierungspotenzial finden.
-- Pains: Datenkomplexität (RFI), mühsame Fehlersuche in Tabellen.
-- Gains: Sofortige Sichtbarkeit von Hotspots; vertrauenswürdige Datengrundlage für Policy-Änderungen.
+#### Value Proposition Canvas (Auszug):
+- **Jobs:** Budgeteinhaltung überwachen, Optimierungspotenzial finden.
+- **Pains:** Datenkomplexität (RFI), mühsame Fehlersuche in Tabellen.
+- **Gains:** Sofortige Sichtbarkeit von Hotspots; vertrauenswürdige Datengrundlage für Policy-Änderungen.
 
 ## Situation Assessment
-- Ressourcen: Datensätze travel_data.csv (Transaktionsdaten) und co2_budgets.csv (Zielvorgaben). Team aus 3 Personen mit Python-Kenntnissen.
+- **Ressourcen:** Datensätze travel_data.csv (Transaktionsdaten) und co2_budgets.csv (Zielvorgaben). Team aus 3 Personen mit Python-Kenntnissen.
 
-- Tools: Python (Pandas, Plotly/Altair), Quarto für die Dokumentation, GitHub für Versionierung.
+- **Tools:** Python (Pandas, Plotly/Altair), Quarto für die Dokumentation, GitHub für Versionierung.
 
-- Einschränkungen: Projektlaufzeit gemäss Kurssemester. Fokus auf Nachvollziehbarkeit und Reproduzierbarkeit (kein Excel für Analysen).
+- **Einschränkungen:** Projektlaufzeit gemäss Kurssemester. Fokus auf Nachvollziehbarkeit und Reproduzierbarkeit (kein Excel für Analysen).
 
-- Risiken: Inkonsistente IATA-Codes; Fehlinterpretation der RFI-Szenarien durch Endnutzer ; Fehlende Daten für bestimmte Subunits in frühen Jahren.
+- **Risiken:** Inkonsistente IATA-Codes, fehlinterpretation der RFI-Szenarien durch Endnutzer, fehlende Daten für bestimmte Subunits in frühen Jahren.
 
 ## Visualization Concept
-- Product Form: Interaktives Dashboard mit einer narrativen "Data Story"-Struktur (Context -> Insight -> Action).
+- **Product Form:** Interaktives Dashboard mit einer narrativen "Data Story"-Struktur (Context -> Insight -> Action).
 
-- Visual Encodings:
+- **Visual Encodings:**
 
-    - Bullet Graphs: Vergleich von Ist-Emissionen vs. Budget pro BU (platzsparender als Tachos).
+    - **Bullet Graphs:** Vergleich von Ist-Emissionen vs. Budget pro BU (platzsparender als Tachos).
 
-    - Sankey Diagram: Darstellung des Flusses von BU über Reisezweck zum Transportmodus (Identifikation von Treibern).
+    - **Sankey Diagram:** Darstellung des Flusses von BU über Reisezweck zum Transportmodus (Identifikation von Treibern).
 
-    - Line Charts: Darstellung des Absenkpfads über die Zeit (2017–2024).
+    - **Line Charts:** Darstellung des Absenkpfads über die Zeit (2017–2024).
 
-    - Choropleth Map: Visualisierung der meistbeflogenen Routen mit Hervorhebung von Strecken, auf denen Zug-Alternativen existieren.
+    - **Choropleth Map:** Visualisierung der meistbeflogenen Routen mit Hervorhebung von Strecken, auf denen Zug-Alternativen existieren.
 
-- Interactivity: Filter für Zeiträume, Business Units und Reisezwecke; Tooltips zur Erläuterung der RFI-Berechnung.
+- **Interactivity:** Filter für Zeiträume, Business Units und Reisezwecke; Tooltips zur Erläuterung der RFI-Berechnung.
 
-- Narrative: Storytelling-Ansatz "Der Kampf gegen den Absenkpfad" – Dokumentation des Fortschritts und Aufzeigen notwendiger Kurskorrekturen.
+- **Narrative:** Storytelling-Ansatz "Der Kampf gegen den Absenkpfad" – Dokumentation des Fortschritts und Aufzeigen notwendiger Kurskorrekturen.
 
-Intended Value:
+#### Intended Value:
 
-- Cognitive: Bullet Graphs ermöglichen sofortigen Längenvergleich statt ungenauer Winkelinterpretation bei Gauges.
+- **Cognitive:** Bullet Graphs ermöglichen sofortigen Längenvergleich statt ungenauer Winkelinterpretation bei Gauges.
 
-- Communicative: Klare Annotationen erklären den "Well-to-Wake"-Ansatz und die Bedeutung von RFI.
+- **Communicative:** Klare Annotationen erklären den "Well-to-Wake"-Ansatz und die Bedeutung von RFI.
 
-- Experiential: Ein ästhetisches, funktionales Design schafft Vertrauen und fördert die Akzeptanz des Tools als Steuerungsinstanz.
+- **Experiential:** Ein ästhetisches, funktionales Design schafft Vertrauen und fördert die Akzeptanz des Tools als Steuerungsinstanz.
 
 
 ## Project Plan
@@ -140,6 +140,6 @@ gantt
 See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
 
 ## Roles and Contact Details
-- Projektleitung & Storytelling: Fiton Sallahaj, Verantwortlich für Stakeholder-Alignment und narrativen Fluss.
-- Data Engineer: Christopher Zickler, Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI).
-- Visualisierungs-Designer: Villavarayasingam Gopigan, Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts.
+- **Projektleitung & Storytelling:** Fiton Sallahaj, Verantwortlich für Stakeholder-Alignment und narrativen Fluss.
+- **Data Engineer:** Christopher Zickler, Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI).
+- **Visualisierungs-Designer:** Villavarayasingam Gopigan, Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts.
