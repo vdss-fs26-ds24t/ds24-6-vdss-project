@@ -18,7 +18,7 @@ Berücksichtigung wissenschaftlicher Unsicherheiten durch Darstellung verschiede
 
 3. Welche Hebel (Modal Shift von Flug auf Bahn) bieten das grösste Einsparpotenzial?
 
-Nutzen: Strategische Steuerung der Reisetätigkeit zur Einhaltung der Netto-Null-Ziele bis 2050.
+**Nutzen:** Strategische Steuerung der Reisetätigkeit zur Einhaltung der Netto-Null-Ziele bis 2050.
 Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im internen Firmennetzwerk.
 
 
