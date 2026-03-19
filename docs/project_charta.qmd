@@ -106,7 +106,7 @@ Justify the concept by mapping it explicitly to the project objectives and the u
 
 
 ## Project Plan
-Divide the project into individual phases, describe them briefly and draw up a preliminary timetable, e.g. as a Gantt chart:
+Die Parallelisierung von Aufgaben spiegelt die Aufgabenteilung innerhalb des Teams wider und gewährleistet eine effiziente Nutzung der Ressourcen.
 
 ```{mermaid}
 %%| label: fig-project-plan
@@ -115,22 +115,29 @@ gantt
     title Projekt Zeitplan 2026
     dateFormat YYYY-MM-DD
     tickInterval 1week
+
     section Vorbereitung
         Kontextanalyse & Domänenrecherche (RFI)    :a1, 2026-03-01, 7d
         Stakeholder- & Nutzeranalyse (Personas)    :a2, 2026-03-08, 7d
-        Sign Project Charta                        :milestone, m1, 2026-03-15, 0d
+        Finalisierung Project Charta               :a3, 2026-03-15, 4d
+        Abgabe Project Charta                      :milestone, m1, 2026-03-19, 0d
+
     section Daten & Exploration
-        Datenbereinigung (IATA, Einheiten)         :a3, 2026-03-16, 10d
-        Explorative Datenanalyse (EDA)             :a4, 2026-03-26, 7d
-        Datenbericht Besprechung                   :milestone, m2, 2026-04-02, 0d
+        Datenbereinigung (IATA, Einheiten)         :b1, 2026-03-19, 10d
+        Explorative Datenanalyse (EDA)             :b2, 2026-03-24, 10d
+        Datenbericht & Alignment                   :milestone, m2, 2026-04-03, 0d
+
     section Design & Entwicklung
-        Erstellung Vis-Konzept (Skizzen)           :a5, 2026-04-03, 5d
-        Entwicklung Bullet- & Sankey-Charts        :a6, 2026-04-08, 10d
-        Dashboard Prototyping (Streamlit)          :a7, 2026-04-18, 14d
+        Vis-Konzept & Wireframes                   :c1, 2026-04-03, 7d
+        Entwicklung Charts (Bullet, Sankey etc.)   :c2, 2026-04-08, 14d
+        Dashboard Prototyping (Streamlit)          :c3, 2026-04-15, 18d
+
     section Finalisierung
-        Storytelling & Annotationen                :a8, 2026-05-02, 7d
-        Dokumentation & Peer Review                :a9, 2026-05-09, 7d
-        Abschlusspräsentation                      :milestone, m3, 2026-05-20, 0d
+        Storytelling & Annotationen                :d1, 2026-05-03, 7d
+        Testing & Iteration                        :d2, 2026-05-10, 10d
+        Dokumentation (Quarto & GitHub Pages)      :d3, 2026-05-15, 10d
+        Final Review & Polishing                   :d4, 2026-05-25, 7d
+        Abgabe Visualisierungsprojekt              :milestone, m3, 2026-06-01, 0d
 ```
 
 See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
