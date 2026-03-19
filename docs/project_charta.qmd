@@ -119,11 +119,11 @@ gantt
     section Vorbereitung
         Kontextanalyse & Domänenrecherche (RFI)    :a1, 2026-03-01, 7d
         Stakeholder- & Nutzeranalyse (Personas)    :a2, 2026-03-08, 7d
-        Finalisierung Project Charta               :a3, 2026-03-15, 4d
-        Abgabe Project Charta                      :milestone, m1, 2026-03-19, 0d
+        Finalisierung Project Charta               :a3, 2026-03-15, 5d
+        Abgabe Project Charta                      :milestone, m1, 2026-03-20, 0d
 
     section Daten & Exploration
-        Datenbereinigung (IATA, Einheiten)         :b1, 2026-03-19, 10d
+        Datenbereinigung (IATA, Einheiten)         :b1, 2026-03-20, 10d
         Explorative Datenanalyse (EDA)             :b2, 2026-03-24, 10d
         Datenbericht & Alignment                   :milestone, m2, 2026-04-03, 0d
 
