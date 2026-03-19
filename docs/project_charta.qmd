@@ -25,17 +25,17 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 ## Project Objectives and Success Criteria
 #### Projektziele (Stakeholder-Perspektive):
 
-- Transparenz schaffen: BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
+- **Transparenz schaffen:** BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
 
-- Entscheidungsunterstützung: Identifikation von "Quick Wins" (z. B. Kurzstreckenflüge durch Bahn ersetzen, wo Alternativen vorhanden sind).
+- **Entscheidungsunterstützung:** Identifikation von "Quick Wins" (z. B. Kurzstreckenflüge durch Bahn ersetzen, wo Alternativen vorhanden sind).
 
-- Bewusstsein schärfen: Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
+- **Bewusstsein schärfen:** Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
 
 #### Erfolgskriterien:
 
-- Qualitativ: Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
+- **Qualitativ:** Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
 
-- Quantitativ: Nutzer können innerhalb von 30 Sekunden die Business Unit mit der höchsten Budgetabweichung identifizieren. Mindestens 80 % der Testnutzer interpretieren den Unterschied zwischen RFI 2.0 und 2.7 korrekt.
+- **Quantitativ:** Nutzer können innerhalb von 30 Sekunden die Business Unit mit der höchsten Budgetabweichung identifizieren. Mindestens 80 % der Testnutzer interpretieren den Unterschied zwischen RFI 2.0 und 2.7 korrekt.
 
 **Out of Scope:** Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-Tracking (Daten-Update erfolgt monatlich/quartalsweise).
 
