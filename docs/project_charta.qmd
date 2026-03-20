@@ -4,7 +4,7 @@ Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG)
 
 #### Themenaspekte:
 
-- Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2024.
+- Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2026.
 
 - Gegenüberstellung von Ist-Emissionen und vordefinierten CO₂-Budgets (Absenkpfad) pro Business Unit (BU1–BU4).
 
