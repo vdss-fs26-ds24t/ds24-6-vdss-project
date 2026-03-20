@@ -93,7 +93,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 
 - **Narrative:** Storytelling-Ansatz "Der Kampf gegen den Absenkpfad" – Dokumentation des Fortschritts und Aufzeigen notwendiger Kurskorrekturen.
 
-#### Intended Value:
+### Intended Value:
 
 - **Cognitive:** Bullet Graphs ermöglichen sofortigen Längenvergleich statt ungenauer Winkelinterpretation bei Gauges.
 
