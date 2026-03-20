@@ -140,6 +140,8 @@ gantt
 See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
 
 ## Roles and Contact Details
-- **Projektleitung & Storytelling:** Fiton Sallahaj, Verantwortlich für Stakeholder-Alignment und narrativen Fluss.
-- **Data Engineer:** Christopher Zickler, Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI).
-- **Visualisierungs-Designer:** Villavarayasingam Gopigan, Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts.
+| Rolle | Name | Aufgaben | Kontakt
+|-------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------|-----|
+| **Projektleitung & Storytelling**  | Fiton Sallahaj | Verantwortlich für Stakeholder-Alignment und narrativen Fluss           | sallafit@students.zhaw.ch
+| **Data Engineer** | Christopher Zickler | Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI) | zicklchr@students.zhaw.ch |
+| **Visualisierungs-Designer** | Villavarayasingam Gopigan | Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts | villagop@students.zhaw.ch |
