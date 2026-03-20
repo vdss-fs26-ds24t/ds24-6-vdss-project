@@ -2,7 +2,7 @@
 ## Context and Scope
 Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG) an. Angesichts verschärfter regulatorischer Anforderungen in der Schweiz (Art. 964a OR) und der EU (CSRD) müssen Unternehmen ihre Scope-3-Emissionen, zu denen Geschäftsreisen zählen, präzise erfassen und reduzieren.
 
-#### Themenaspekte:
+### Themenaspekte:
 
 - Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2026.
 
@@ -10,7 +10,7 @@ Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG)
 
 Berücksichtigung wissenschaftlicher Unsicherheiten durch Darstellung verschiedener Szenarien (RFI 2.0 vs. RFI 2.7).
 
-#### Zentrale Fragestellungen:
+### Zentrale Fragestellungen:
 
 1. Befinden sich die Business Units auf dem geplanten Absenkpfad oder drohen Budgetüberschreitungen?
 
@@ -23,7 +23,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 
 
 ## Project Objectives and Success Criteria
-#### Projektziele (Stakeholder-Perspektive):
+### Projektziele (Stakeholder-Perspektive):
 
 - **Transparenz schaffen:** BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
 
@@ -31,7 +31,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 
 - **Bewusstsein schärfen:** Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
 
-#### Erfolgskriterien:
+### Erfolgskriterien:
 
 - **Qualitativ:** Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
 
@@ -62,7 +62,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 - **Pains:** Manuelle Aufbereitung fragmentierter Datenquellen; unklare Zuständigkeiten für CO₂-Budgets.
 - **Gains:** Automatisierte Berichte; "Audit-Ready"-Datenbasis durch klare Dokumentation der Emissionsfaktoren.
 
-#### Value Proposition Canvas (Auszug):
+### Value Proposition Canvas (Auszug):
 - **Jobs:** Budgeteinhaltung überwachen, Optimierungspotenzial finden.
 - **Pains:** Datenkomplexität (RFI), mühsame Fehlersuche in Tabellen.
 - **Gains:** Sofortige Sichtbarkeit von Hotspots; vertrauenswürdige Datengrundlage für Policy-Änderungen.
