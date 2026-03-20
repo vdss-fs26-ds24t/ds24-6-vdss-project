@@ -85,7 +85,7 @@ Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im intern
 
     - **Sankey Diagram:** Darstellung des Flusses von BU über Reisezweck zum Transportmodus (Identifikation von Treibern).
 
-    - **Line Charts:** Darstellung des Absenkpfads über die Zeit (2017–2024).
+    - **Line Charts:** Darstellung des Absenkpfads über die Zeit (2017–2026).
 
     - **Choropleth Map:** Visualisierung der meistbeflogenen Routen mit Hervorhebung von Strecken, auf denen Zug-Alternativen existieren.
 
