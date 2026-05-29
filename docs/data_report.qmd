@@ -1,147 +1,152 @@
 # Data Report
-All information on the data used in the project is compiled in the data report in order to ensure the traceability and reproducibility of the results and to enable a systematic expansion of the database.
 
-Typically, in the exploratory analysis of the acquired raw data, quality and other issues are identified, which require pre-processing, merging of individual datasets and feature engineering into processed datasets. Therefore, this template provides a separate section for the processed data, which then serves as a starting point for the modelling activities. This needs to be adapted to the specific project requirements.
+Dieser Data Report dokumentiert die Datengrundlage des Visualisierungsprojekts zu CO2-Emissionen aus Geschaeftsreisen. Ziel ist es, die verwendeten Daten nachvollziehbar zu beschreiben, zentrale Datenqualitaetsaspekte festzuhalten und die Eignung der Daten fuer das Streamlit-Dashboard zu bewerten.
 
-## Raw data
+## Raw Data
+
 ### Overview Raw Datasets
 
 : Overview of raw datasets used in the project. {#tbl-raw-overview}
 
 | Name | Quelle | Storage location |
-|----------------|-----------------------------------------|--------------------------------------------------------------------------|
-| Dataset 1      | Name/short description of the data source | Link and/or short description of the location where the data is stored, e.g. accessible to the team |
-| Dataset 2      | …                                       | …                                                                        |
+|---|---|---|
+| `travel_data` | Bereitgestellte Excel-Datei `traveldata-export.xlsx`; Transaktionsdaten zu Geschaeftsreisen | Sheet `travel_data` in `traveldata-export.xlsx` |
+| `co2_budgets` | Bereitgestellte Excel-Datei `traveldata-export.xlsx`; CO2-Budgets nach Subunit und Jahr | Sheet `co2_budgets` in `traveldata-export.xlsx` |
+| `data_dictionary` | Bereitgestellte Excel-Datei `traveldata-export.xlsx`; Beschreibung der Variablen | Sheet `data_dictionary` in `traveldata-export.xlsx` |
 
-### Details Dataset 1
+### Details Raw Dataset: `travel_data`
 
-- Description of what information the dataset contains
-- Details of the data source/provider
-- Information on data procurement: description and possibly references to resources (download scripts, tools, online services, ...). Any new team member should be able to acquire the data indepentendently following these instructions.
-- Legal aspects of data use, licences, etc.
-- Data governance aspects: Categorisation of the data based on internal business requirements, e.g. public, business-relevant, personal
-- If applicable: categorisation into dependent (target variable, regressor) and independent (regressor) variables
-- ...
+Der Datensatz `travel_data` enthaelt einzelne Reiseabschnitte von Mitarbeitenden oder externen Gaesten im Zeitraum 2017 bis 2026. Jeder Datensatz beschreibt eine Reiseverbindung mit Transportmodus, Start- und Zielort, Business Unit, Reisezweck, Distanz, Kosten und berechneten CO2e-Werten.
 
-#### Data Catalogue
-The data catalogue basically represents an extended schema of a relational database.
+Der Datensatz umfasst **25'527 Zeilen** und **27 Spalten**. Die wichtigsten Analysevariablen sind:
 
+: Data catalogue for selected variables in `travel_data`. {#tbl-data-catalogue-travel}
 
-: Data catalogue for Dataset 1. {#tbl-data-catalogue}
+| Column name | Datatype | Values / Range | Short description |
+|---|---:|---|---|
+| `date` | date | 2017-01-01 bis 2026 | Datum des Reiseabschnitts |
+| `transport_mode` | text | `flight`, `train`, `rental_car`, `bus` | Verkehrsmittel |
+| `business_unit` | text | `BU1`, `BU2`, `BU3`, `BU4` | Organisationseinheit |
+| `subunit` | text | z.B. `Subunit 1.1` | Untereinheit innerhalb der Business Unit |
+| `travel_purpose` | text | `client_meeting`, `internal_meeting`, `workshop`, `training`, `trade_fair`, `site_visit` | Zweck der Reise |
+| `CO2e RFI2 (t)` | numeric | Tonnen CO2e | Emissionen mit RFI-Faktor 2.0 |
+| `CO2e RFI2.7 (t)` | numeric | Tonnen CO2e | Emissionen mit RFI-Faktor 2.7 |
+| `cost_CHF` | numeric | CHF | Reisekosten |
+| `km` | numeric | Kilometer | Reisedistanz |
+| `haul` | text | `short haul`, `mid haul`, `long haul`, `ground` | Distanzkategorie |
+| `train_alternative_available` | boolean | `True`, `False` | Gibt an, ob eine Bahnalternative vorhanden ist |
 
-| Column index | Column name |  Datatype | Values (Range, validation rules) | Short description |
-|---|---|---|---|---|
-| 1 |   |   |   |   |
-| 2 |   |   |   |   |
-|   |   |   |   |   |
+### Details Raw Dataset: `co2_budgets`
 
+Der Datensatz `co2_budgets` enthaelt Zielwerte fuer CO2-Budgets pro `subunit` und Jahr. Er umfasst **100 Zeilen** und **3 Spalten**.
 
-#### If applicable: Entity Relationship Diagram
+: Data catalogue for `co2_budgets`. {#tbl-data-catalogue-budget}
 
+| Column name | Datatype | Values / Range | Short description |
+|---|---:|---|---|
+| `subunit` | text | 10 Subunits | Organisationseinheit fuer Budgetzuordnung |
+| `year` | integer | 2017 bis 2026 | Jahr |
+| `co2_budget_t` | numeric | Tonnen CO2e | Jaehrliches CO2-Budget |
 
-#### Data Chracteristics and Quality
+Wichtig: Vollstaendige Budgetwerte liegen nur fuer die Jahre **2020 bis 2025** vor. Fuer 2017 bis 2019 sowie 2026 sind keine verwertbaren Budgetwerte vorhanden. Budgetvergleiche im Dashboard sollten deshalb primaer fuer 2020 bis 2025 interpretiert werden.
 
-The methods of exploratory data analysis are used to describe relevant characteristics of the data and identify data quality issues. This includes, for example, 
+## Data Characteristics and Quality
 
-the univariate andalysis of numerical variables:
+### Umfang und Verteilung
 
-* Number or fraction
-    * of unique values
-    * of missing values
-    * of zero values
-    * of negative values
-* Frequency distribution
-* Extreme values (minimum and maximum)
-* Histogram
-* Measures of central tendency:
-    * arithmetic mean
-    * median
-    * mode
-* Measures of dispersion and visualisation of dispersion:
-    * Range
-    * Quantiles and interquartile range (IQR)
-    * Box plot
-    * Variance and standard deviation 
+Der Reisedatensatz enthaelt insgesamt **25'527 Reiseabschnitte**. Die Reiseaktivitaet verteilt sich auf vier Business Units:
 
-and for categorical variables:
+: Trips and emissions by business unit. {#tbl-bu-summary}
 
-* number of classes
-* and the corresponding distribution of values
-* fraction of missing values
+| Business Unit | Anzahl Reisen | CO2e RFI 2.7 (t) | Kosten CHF |
+|---|---:|---:|---:|
+| BU1 | 6'821 | 2'594.8 | 4'662'995 |
+| BU2 | 6'164 | 2'640.4 | 4'619'301 |
+| BU3 | 6'719 | 3'232.0 | 5'438'014 |
+| BU4 | 5'823 | 2'360.7 | 4'171'572 |
 
-The correlation between variables in the form of
+Die gesamten Emissionen betragen **7'547.8 t CO2e** bei RFI 2.0 und **10'828.0 t CO2e** bei RFI 2.7. Die gesamten Reisekosten betragen rund **18.9 Mio. CHF**.
 
-* correlation coefficients (e.g. Pearson, Spearman, Kendall)
-* and corresponding visualizations, e.g. scatter plot, heatmap, grouped box plot (for categorical-numerical relationships), ...
+### Verkehrsmittel
 
+: Trips and emissions by transport mode. {#tbl-transport-summary}
 
-The results the exploratory data analysis should be summarised here (code and full output in the `eda` subfolder) and the implications for the subsequent data pre-processing, visualization design and implementation steps should be discussed. Is the data quality and quantity sufficient to achieve the visualisation goals? Is it necessary to acquire additional or different data? Are there any limitations that need to be considered in the design and implementation of the visualisation product? Are there any specific data characteristics that can be used to enhance the visualisation design? For example, if there are a lot of missing values in a dataset, this might need to be taken into account in the design of the visualisation product, e.g. by using specific visual encodings to indicate missing values or by providing options for filtering or imputing missing values. 
+| Transport mode | Anzahl Reisen | CO2e RFI 2.7 (t) | Kosten CHF | Kilometer |
+|---|---:|---:|---:|---:|
+| flight | 18'757 | 10'781.0 | 17'943'056 | 45'751'625 |
+| train | 4'505 | 13.8 | 665'427 | 2'293'060 |
+| rental_car | 1'411 | 26.5 | 243'760 | 331'710 |
+| bus | 854 | 6.7 | 39'638 | 246'340 |
 
-Tip: `Ydata-profiling` is a Python library that can be used to perform exploratory data analysis and generate a comprehensive report on the characteristics of the data, including the distribution of values, missing values, correlations between variables, and more. This can be a useful tool to generate the full analysis in the code section and then only include the relevant information here in the data report.
+Die Emissionen werden fast vollstaendig durch Flugreisen verursacht. Dies bestaetigt, dass ein Dashboard fuer BU-Heads besonders die Flugaktivitaet, Langstrecken und Bahnalternativen sichtbar machen sollte.
 
-This is an example on how to incorporate executable Python code and show a figure output:
+### Zeitliche Entwicklung
 
-```{python}
-#| label: fig-demo
-#| fig-cap: "Distribution of monthly revenue across product categories (sample data)."
-#| echo: true
-#| code-fold: true
-import matplotlib.pyplot as plt
+: Trips and emissions by year. {#tbl-year-summary}
 
-# Sample data
-categories = ['Electronics', 'Clothing', 'Food', 'Books', 'Sports']
-revenue = [42000, 28500, 35200, 12800, 19400]
+| Jahr | Anzahl Reisen | CO2e RFI 2.0 (t) | CO2e RFI 2.7 (t) | Kosten CHF |
+|---:|---:|---:|---:|---:|
+| 2017 | 3'446 | 986.1 | 1'437.0 | 2'298'705 |
+| 2018 | 3'366 | 930.2 | 1'354.9 | 2'437'341 |
+| 2019 | 3'637 | 1'334.3 | 1'957.6 | 3'184'165 |
+| 2020 | 820 | 310.0 | 455.1 | 749'952 |
+| 2021 | 531 | 120.3 | 172.5 | 317'432 |
+| 2022 | 2'396 | 719.5 | 1'047.0 | 1'955'020 |
+| 2023 | 3'610 | 1'093.9 | 1'600.4 | 2'635'703 |
+| 2024 | 3'713 | 969.3 | 1'346.0 | 2'686'423 |
+| 2025 | 4'005 | 1'084.2 | 1'457.4 | 2'626'660 |
+| 2026 | 3 | 0.0 | 0.0 | 478 |
 
-# Create the bar chart
-fig, ax = plt.subplots(figsize=(6, 3.75))
+Die Jahre 2020 und 2021 zeigen deutlich niedrigere Reiseaktivitaet. 2026 enthaelt nur drei Eintraege und ist fuer die Analyse nicht aussagekraeftig.
 
-bars = ax.bar(categories, revenue, color='#4C78A8', edgecolor='white')
+### Missing Values
 
-ax.set_xlabel('Product Category')
-ax.set_title('Monthly Revenue by Product Category')
+Im Datensatz wurden fehlende Werte vor allem in folgenden Spalten identifiziert:
 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.yaxis.set_visible(False)
-ax.tick_params(axis='x', length=0)
+| Column | Missing values | Interpretation |
+|---|---:|---|
+| `travel_class` | 1'411 | Fehlt vor allem bei Mietwagen oder Nicht-Flugreisen |
+| `flight_number` | 6'770 | Fehlt bei bodengebundenen Verkehrsmitteln |
+| `departure_continent` | 1'575 | Teilweise fehlende Geodaten |
+| `arrival_continent` | 1'623 | Teilweise fehlende Geodaten |
+| `aircraft_type` | 6'770 | Fehlt bei Nicht-Flugreisen |
 
-# Add value labels on bars
-for bar, val in zip(bars, revenue):
-    ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 500,
-            f'{val:,.0f}', ha='center', va='bottom', fontsize=9)
-
-plt.tight_layout()
-plt.show()
-```
-
-Then the figure can be referenced with @fig-demo.
+Diese fehlenden Werte sind fuer das MVP-Dashboard akzeptabel, weil die zentralen Variablen `business_unit`, `subunit`, `year`, `transport_mode`, `CO2e RFI2 (t)`, `CO2e RFI2.7 (t)`, `cost_CHF` und `train_alternative_available` vorhanden und nutzbar sind.
 
 ## Processed Data
+
 ### Overview Processed Datasets
+
+Fuer das Streamlit-Dashboard wurden die relevanten Excel-Sheets in CSV-Dateien aufgeteilt.
 
 : Overview of processed datasets used in the project. {#tbl-processed-overview}
 
 | Name | Quelle | Storage location |
-|----------------|-----------------------------------------|--------------------------------------------------------------------------|
-| Processed Dataset 1      | Name/short description of the data source | Link and/or short description of the location where the data is stored, e.g. accessible to the team |
-| Processed Dataset 2      | …                                       | …                                                                        |
+|---|---|---|
+| `travel_data.csv` | Export aus Sheet `travel_data` | `data/travel_data.csv` |
+| `co2_budgets.csv` | Export aus Sheet `co2_budgets` | `data/co2_budgets.csv` |
 
-### Details Processed Dataset 1
+### Processing Steps
 
-- Description of what information the dataset contains
-- Details and reasons for the processing steps -> Traceability and ensuring reproducibility
-- How can the data be accessed? Description, scripts, tools, ...
-- ...
+Die Verarbeitung fuer das MVP ist bewusst einfach gehalten:
 
-#### Data Catalogue
+1. Export der Sheets `travel_data` und `co2_budgets` aus der Excel-Datei als CSV.
+2. Umwandlung von `date` in ein Datumsformat.
+3. Ableitung der Spalte `year` aus `date`.
+4. Umwandlung der CO2-, Kosten- und Kilometer-Spalten in numerische Werte.
+5. Verknuepfung der Budgetdaten mit Business Units ueber die Subunit-Zuordnung.
+6. Nutzung von `CO2e RFI2 (t)` oder `CO2e RFI2.7 (t)` als waehbares Emissionsszenario im Dashboard.
 
+## Implications for the Visualization Product
 
-#### If applicable: Entity Relationship Diagram
+Die Daten sind fuer ein MVP-Dashboard ausreichend. Sie erlauben insbesondere:
 
+- Budgetvergleich nach Business Unit und Subunit
+- Analyse von Emissionstreibern nach Verkehrsmittel, Reisezweck und Distanzkategorie
+- Vergleich von RFI 2.0 und RFI 2.7
+- Identifikation von Flugreisen mit vorhandener Bahnalternative
+- einfache Finance-Sicht ueber Kosten, CO2e und Kosten pro Tonne CO2e
 
-#### Data Chracteristics and Quality
+Die wichtigste Einschraenkung ist, dass Budgetdaten nur fuer **2020 bis 2025** sinnvoll verfuegbar sind. Deshalb sollte das Dashboard standardmaessig ein Jahr aus diesem Zeitraum verwenden, zum Beispiel 2025. Zudem ist 2026 aufgrund der sehr geringen Anzahl an Eintraegen nicht fuer inhaltliche Schlussfolgerungen geeignet.
 
-
-### Details Processed Dataset 2
-...
+Insgesamt ist die Datenqualitaet fuer die Zielsetzung des Projekts ausreichend. Fuer eine spaetere Version koennten Geodaten, Flugzeugtypen und Annahmen zu Emissionsfaktoren genauer dokumentiert und validiert werden.
