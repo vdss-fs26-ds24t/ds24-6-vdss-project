@@ -149,22 +149,23 @@ Aggregierte Daten fliessen in das offizielle ESG-Reporting des Unternehmens ein 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  Geschaeftsreisen CO2 Dashboard                             │
-│  Filter: Business Unit | Jahr | CO2e Szenario (RFI) | ...  │
+│  Sidebar-Filter: View | Business Unit | Subunit | Jahr |    │
+│  Monat | CO2e-Szenario (RFI) | erweiterte Filter            │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  [Budgetsteuerung] ← PRIMÄRER TAB für Team Heads           │
-│  └─ KPIs: CO2e Ist | Budget | Status | Reisen | Kosten     │
-│  └─ Grouped Bar Chart: Actual vs. Budget pro BU/Subunit    │
+│  View: BU-Leitung  ← primäre operative Standardsicht        │
+│  └─ Context: Budgetstatus, Jahres-Ist, Budget, Saldo,       │
+│     Reisen und Rail-First Chancen                           │
+│  └─ Tabs: Budgetstatus | Treiber | Rail-First | Trend |     │
+│     Details                                                 │
 │                                                             │
-│  [Emissionstreiber]                                        │
-│  └─ Bar Charts: nach Transportmodus | Reisezweck | Haul    │
-│  └─ Linienchart: CO2e-Entwicklung 2017–2026                │
+│  View: CSO Report  ← sekundäre Report-Sicht                 │
+│  └─ Tabs: CSO Summary | BU-Vergleich | Unternehmens-Trend | │
+│     Export                                                  │
 │                                                             │
-│  [Rail-First Chancen]                                      │
-│  └─ Flüge mit verfügbarer Zugalternative + CO2e-Einsparung │
-│                                                             │
-│  [CSO Vergleich]  ← Sekundär: aggregierter BU-Vergleich    │
-│  [Finance Quick View]  ← Sekundär: Kosten-Emissions-Audit  │
+│  View: Finance Report  ← sekundäre Audit-/Export-Sicht      │
+│  └─ Tabs: Finance Quick View | Kosten-CO2e | Stichprobe |   │
+│     Export                                                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
