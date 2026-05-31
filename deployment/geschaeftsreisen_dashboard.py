@@ -145,16 +145,16 @@ haul_types = sorted(travel["haul"].dropna().unique())
 default_year = 2025 if 2025 in years else years[-1]
 
 st.title("Geschaeftsreisen CO2 Dashboard")
-st.caption("MVP fuer BU-Heads: Budgetstatus, Emissionstreiber und Rail-First Chancen.")
+st.caption("MVP für BU-Heads: Budgetstatus, Emissionstreiber und Rail-First Chancen.")
 
 with st.sidebar:
     st.header("Filter")
-    selected_bu = st.selectbox("Business Unit", business_units + ["All"], index=0)
+    selected_bu = st.selectbox("Business Unit", business_units + ["Alle"], index=0)
     selected_year = st.selectbox(
         "Jahr",
         years,
         index=years.index(default_year),
-        help="Budgetdaten sind im Datensatz fuer 2020-2025 vorhanden.",
+        help="Budgetdaten sind im Datensatz für 2020–2025 vorhanden.",
     )
     selected_rfi = st.radio("CO2e Szenario", list(RFI_COLUMNS.keys()), index=1)
     emission_col = RFI_COLUMNS[selected_rfi]
@@ -173,7 +173,7 @@ with st.sidebar:
     selected_haul = st.multiselect("Haul", haul_types, default=haul_types)
 
     st.divider()
-    st.caption("Primaere Zielgruppe: BU-Heads. CSO- und Finance-Sichten sind bewusst schlank gehalten.")
+    st.caption("Primäre Zielgruppe: BU-Heads. CSO- und Finance-Sichten sind bewusst schlank gehalten.")
 
 
 base_filtered = travel[
@@ -183,7 +183,7 @@ base_filtered = travel[
     & (travel["haul"].isin(selected_haul))
 ].copy()
 
-if selected_bu != "All":
+if selected_bu != "Alle":
     filtered = base_filtered[base_filtered["business_unit"] == selected_bu].copy()
     budget_scope = budgets[budgets["business_unit"] == selected_bu].copy()
 else:
@@ -236,7 +236,7 @@ tab_bu, tab_drivers, tab_rail, tab_cso, tab_finance = st.tabs(
 with tab_bu:
     st.markdown("#### Actual vs Budget")
 
-    group_col = "business_unit" if selected_bu == "All" else "subunit"
+    group_col = "business_unit" if selected_bu == "Alle" else "subunit"
     budget_summary = summarize_budget(
         filtered,
         budget_scope,
@@ -363,7 +363,7 @@ with tab_drivers:
             & (travel["travel_purpose"].isin(selected_purposes))
             & (travel["haul"].isin(selected_haul))
         ].copy()
-        if selected_bu != "All":
+        if selected_bu != "Alle":
             trend_scope = trend_scope[trend_scope["business_unit"] == selected_bu]
 
         trend = (
