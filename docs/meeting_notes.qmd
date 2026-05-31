@@ -1,44 +1,135 @@
-# Meeting Notes
+---
+title: "Besprechungsnotizen"
+format: markdown
+---
 
-Notes and decisions from the coaching sessions. You might also want to include notes from internal team meetings here, e.g. to document decisions that are relevant for the project and the development of the visualisation product. Sort in reverse chronological order (most recent first).
+# Besprechungsnotizen
 
+Notizen und Entscheidungen aus den Coaching-Sessions und internen Team-Meetings zur Dokumentation des Projektfortschritts und der Entwicklung des Visualisierungsprodukts.
 
-## 14.04.2022
+*Sortierung: Umgekehrt chronologisch (neueste zuerst).*
 
-Topics:
+---
 
-* topic 1
-* topic 2
-* ...
+## 31.05.2026 (Projektabschluss & Übergabe)
 
-Decisions:
+**Themen:**
 
-* decision 1
-* decision 2
-* ...
+* Finaler Review des Dashboards durch das Projektteam.
+* Übergabe des Tools an die BU-Leiter (Endanwender).
+* Reflektion des Projektablaufs und der Zielerreichung.
 
-Next steps:
+**Entscheidungen:**
 
-* this
-* and that
-* ...
+* **Abnahme:** Das Dashboard erfüllt alle Erfolgskriterien (Antwortzeit der Budgetfrage < 1 Min, operative Relevanz, korrekte RFI-Berechnung).
+* **Betriebsmodus:** Das Tool wird produktiv geschaltet. Die Dokumentation (Quarto/GitHub) dient als Basis für zukünftige Anpassungen durch das Finance-Team.
 
-## 07.04.2022
+**Abschluss-Massnahmen:**
 
-Topics:
+* Bereitstellung des Dashboards über das interne Streamlit-Portal.
+* Durchführung einer kurzen Einführungsschulung für BU-Leiter (inkl. Anleitung zur Interpretation von RFI-Szenarien).
+* Archivierung des Codes auf GitHub und Übergabe der vollständigen Projektdokumentation.
 
-* topic 1
-* topic 2
-* ...
+**Was am Ende noch gemacht wurde:**
 
-Decisions:
+* **Finales Polishing:** Alle Chart-Beschriftungen und Tooltips wurden auf den operativen Nutzen für Sarah (BU-Leitung) optimiert (Entfernung von Jargon).
+* **Validierung:** Letzter Abgleich der RFI-Berechnungslogik gegen Unternehmensrichtlinien und Industriestandards (Defra/ICAO).
+* **Testlauf:** Erfolgreicher "1-Minuten-Test" mit einem Test-Nutzer zur Sicherstellung der intuitiven Bedienbarkeit.
+* **Übergabe-Dokumentation:** Erstellung eines "Getting Started"-Guides im Repository für zukünftige Datenupdates durch das Finance-Team.
 
-* decision 1
-* decision 2
-* ...
+---
 
-Next steps:
+## 29.04.2026 (Internes Team-Meeting)
 
-* this
-* and that
-* ...
+**Themen:**
+
+* Validierung der Datenqualität der IATA-Codes.
+* Implementierung der RFI-Szenarien.
+
+**Entscheidungen:**
+
+* **Datenbereinigung:** Fehlerhafte IATA-Codes werden nicht manuell korrigiert, sondern bei der Datenaufbereitung als "Unbekannt" markiert, um die Transparenz zu wahren.
+* **Szenarien-Vergleich:** Beide Szenarien (RFI 2.0 & 2.7) werden im Dashboard über einen Switcher auswählbar gemacht, um die wissenschaftliche Spannbreite abzubilden.
+
+**Nächste Schritte:**
+
+* Fertigstellung des Python-Skripts für die Datenaufbereitung.
+* Unit-Tests für die RFI-Berechnungslogik schreiben.
+
+---
+
+## 12.04.2026 (Internes Team-Meeting)
+
+**Themen:**
+
+* Architektur des Streamlit-Dashboards.
+* Integration der CSO- und Finance-Sichten.
+
+**Entscheidungen:**
+
+* **Tab-Struktur:** Das Dashboard erhält eine klare Trennung via Tabs, um die primären (Team Heads) von den sekundären Nutzern (CSO/Finance) zu isolieren.
+* **CSS-Design:** Ein einheitliches, professionelles Corporate-Design für das Dashboard wird festgelegt.
+
+**Nächste Schritte:**
+
+* Umsetzung des `inject_css()`-Moduls für konsistentes Layout.
+* Erstellung der spezifischen Report-Logik für den CSO-Export.
+
+---
+
+## 24.03.2026 (Coaching-Session)
+
+**Themen:**
+
+* Überprüfung der Dashboard-Strategie hinsichtlich Nutzwert für das Unternehmen.
+* Schärfung der User-Persona (Sarah, BU-Leiterin) als primäre Zielgruppe.
+* Anpassung der Tonalität und Darstellungslogik („Context → Insight → Action“).
+
+**Entscheidungen:**
+
+* **Fokus auf operativen Nutzen:** Das Dashboard agiert als Steuerungstool für Team Heads, nicht als generisches Management-Reporting.
+* **Reduktion von Storytelling:** Abkehr von narrativen Elementen zugunsten einer präzisen, faktenbasierten und handlungsorientierten Oberfläche.
+* **Persona-Orientierung:** Jede Funktion muss für den Arbeitsalltag der definierten Persona "Sarah" (BU-Leitung) optimiert sein.
+
+**Nächste Schritte:**
+
+* Finalisierung der User-Persona-Beschreibungen in der Project Charta.
+* Überarbeitung der UI-Elemente: Entfernung von fluffigen Storytelling-Texten, Fokus auf Kennzahlen-Layouts.
+* Validierung des Dashboards gegen den 1-Minuten-Erfolgskriterium-Test (Kann Sarah ihre Budgetfrage in unter 60 Sekunden beantworten?).
+
+---
+
+## 17.03.2026 (Projekt-Kick-off)
+
+**Themen:**
+
+* Definition von Projekt-Scope und Zielen.
+* Analyse der Stakeholder-Bedürfnisse.
+
+**Entscheidungen:**
+
+* **Scope-Eingrenzung:** Fokus auf den Zeitraum 2017–2026.
+* **Rollenverteilung:** Klare Trennung der Zuständigkeiten für Daten, Design und Projektsteuerung.
+
+**Nächste Schritte:**
+
+* Erstes Sichten der verfügbaren CSV-Daten.
+* Entwurf der Project Charta.
+
+---
+
+## 13.03.2026 (Vorbereitungstreffen)
+
+**Themen:**
+
+* Machbarkeitsprüfung: Ist die CO₂-Berechnung basierend auf den vorhandenen Daten möglich?
+* Anbindung des Finance-Reports.
+
+**Entscheidungen:**
+
+* Die Datenlage für die CO₂-Berechnung wird als ausreichend bewertet, sofern die Industriestandards (Defra/ICAO) konsequent angewendet werden.
+
+**Nächste Schritte:**
+
+* Literaturrecherche zu RFI-Faktoren.
+* Aufbau der grundlegenden Projektstruktur auf GitHub.
