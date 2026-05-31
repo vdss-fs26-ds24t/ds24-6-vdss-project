@@ -144,7 +144,7 @@ Aggregierte Daten fliessen in das offizielle ESG-Reporting des Unternehmens ein 
 - **Rail-First Chancen:** Wo gibt es Flüge, für die eine Zugalternative existiert?
 - **Unsicherheitsbereich:** Beide RFI-Szenarien (2.0 und 2.7) wählbar, sodass die Bandbreite sichtbar ist
 
-### Info-Architektur (Streamlit-Tabs)
+### Info-Architektur (Streamlit-views und Tabs)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -167,6 +167,7 @@ Aggregierte Daten fliessen in das offizielle ESG-Reporting des Unternehmens ein 
 │  └─ Tabs: Finance Quick View | Kosten-CO2e | Stichprobe |   │
 │     Export                                                  │
 └─────────────────────────────────────────────────────────────┘
+
 ```
 
 ### Visuelle Kodierungen
