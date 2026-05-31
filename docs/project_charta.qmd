@@ -1,113 +1,252 @@
 # Project Charta
-## Context and Scope
-Das Projekt siedelt sich im Bereich des Corporate Sustainability Reporting (ESG) an. Angesichts verschärfter regulatorischer Anforderungen in der Schweiz (Art. 964a OR) und der EU (CSRD) müssen Unternehmen ihre Scope-3-Emissionen, zu denen Geschäftsreisen zählen, präzise erfassen und reduzieren.
 
-### Themenaspekte:
+## Kontext und Scope
 
-- Analyse der Reisetätigkeit (Flug, Bahn, Bus, Mietwagen) über die Jahre 2017–2026.
+### Hintergrund
+Das Unternehmen hat sich verpflichtet, die CO₂-Emissionen aus Geschäftsreisen bis 2050 auf Netto-Null zu reduzieren. Dafür wurden den vier Business Units (BU1–BU4) jährliche CO₂-Budgets zugeteilt. BU-Leiter und Team Heads wissen jedoch aktuell nicht, ob ihr Team im Rahmen des Budgets liegt – sie können Abweichungen weder frühzeitig erkennen noch gezielt gegensteuern.
 
-- Gegenüberstellung von Ist-Emissionen und vordefinierten CO₂-Budgets (Absenkpfad) pro Business Unit (BU1–BU4).
+### Problemstellung
+Team Heads brauchen ein **einfaches, operatives Werkzeug**, um:
+- Den aktuellen CO₂-Budget-Status ihres Teams monatlich einzusehen
+- Zu verstehen, *was* die Emissionen treibt (welche Trips, Routen, Reisemittel)
+- Konkrete Massnahmen zu identifizieren (z. B. Kurzstreckenflüge durch Bahn ersetzen)
+- Fundierte Reisegenehmigungen zu erteilen
 
-Berücksichtigung wissenschaftlicher Unsicherheiten durch Darstellung verschiedener Szenarien (RFI 2.0 vs. RFI 2.7).
+**Aktuell:** Reisedaten existieren, sind aber fragmentiert. BU-Leiter erhalten Quartalsreports von Finance – zu spät, um zu reagieren.
 
-### Zentrale Fragestellungen:
+### Scope
 
-1. Befinden sich die Business Units auf dem geplanten Absenkpfad oder drohen Budgetüberschreitungen?
+- **Was wird erfasst:** Alle Geschäftsreisen (Flug, Bahn, Bus, Mietwagen) von 2017–2026
+- **Primäre Zielgruppe:** Team Heads und BU-Manager, die den eigenen Budgetstatus *wöchentlich/monatlich* prüfen — dies ist ein **operatives Steuerungstool**, kein Management-Reporting
+- **Nicht die primäre Zielgruppe:** Top-Management, CSO und Finance — diese sind Sekundärnutzer mit Lesezugriff auf aggregierte Daten (siehe [Sekundäre Ziele](#sekundäre-ziele-cso--finance) und [Sekundäre Personas](#sekundäre-personas))
+- **Emissionsberechnung:** Zwei Szenarien (RFI 2.0 und RFI 2.7) zur Darstellung wissenschaftlicher Unsicherheit
+- **Daten-Update:** Monatlich, kein Echtzeit-Tracking
 
-2. Welche strukturellen Treiber (Reisezwecke wie "internal_meeting", Transportmodi, Langstrecken) verursachen den grössten Fussabdruck?
+### Kernfragen aus Sicht des Team Heads
 
-3. Welche Hebel (Modal Shift von Flug auf Bahn) bieten das grösste Einsparpotenzial?
+1. **Status:** Sind wir im CO₂-Budget? Wie viel haben wir bereits verbraucht?
+2. **Treiber:** Was verursacht unsere Emissionen? (Welche Trips? Welche Routen? Welches Reisemittel?)
+3. **Massnahmen:** Wo können wir sparen? (z. B. „3 Flüge könnten Zugfahrten sein – spart 2 t CO₂")
 
-**Nutzen:** Strategische Steuerung der Reisetätigkeit zur Einhaltung der Netto-Null-Ziele bis 2050.
-Veröffentlichung: Als interaktive Streamlit-App oder Quarto-Dashboard im internen Firmennetzwerk.
-
-
-## Project Objectives and Success Criteria
-### Projektziele (Stakeholder-Perspektive):
-
-- **Transparenz schaffen:** BU-Leiter sollen jederzeit sehen, wie viel ihres jährlichen CO₂-Budgets bereits verbraucht ist.
-
-- **Entscheidungsunterstützung:** Identifikation von "Quick Wins" (z. B. Kurzstreckenflüge durch Bahn ersetzen, wo Alternativen vorhanden sind).
-
-- **Bewusstsein schärfen:** Visualisierung der Auswirkungen von Reiseklassen (Business vs. Economy) auf die Emissionsbilanz.
-
-### Erfolgskriterien:
-
-- **Qualitativ:** Intuitive Bedienbarkeit für nicht-datenerfahrene Führungskräfte; Förderung einer "Rail-First"-Kultur.
-
-- **Quantitativ:** Nutzer können innerhalb von 30 Sekunden die Business Unit mit der höchsten Budgetabweichung identifizieren. Mindestens 80 % der Testnutzer interpretieren den Unterschied zwischen RFI 2.0 und 2.7 korrekt.
-
-**Out of Scope:** Prädiktive KI-Modelle für zukünftiges Reiseaufkommen; Echtzeit-Tracking (Daten-Update erfolgt monatlich/quartalsweise).
-
-## Stakeholder Analysis
-| Stakeholder                          | Ziele                                                                 | Beziehung                                                   |
-|-------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------|
-| Chief Sustainability Officer (CSO)  | Erreichung der Klimaziele; fehlerfreies Reporting gemäss Standards (GRI/ESRS). | Projektsponsor; gibt regulatorischen Rahmen vor.           |
-| Business Unit Heads (BU1–4)         | Erfüllung der operativen Ziele bei gleichzeitigem Einhalten des CO₂-Budgets. | Primäre Endnutzer; stehen im internen Wettbewerb.          |
-| Finance / Controlling               | Kosten-Nutzen-Analyse von Reisebeschränkungen; Integration von CO₂-Daten in Finanzberichte. | Liefert Kostendaten; überwacht Budgetdisziplin.            |
-| Reisende (Mitarbeitende)            | Beibehaltung der Mobilität bei minimalem administrativen Aufwand.     | Datenquellen; von Reiserichtlinien direkt betroffen.        |
-
-## User Analysis
-### Persona 1: Dr. Müller, CSO (The Strategic Navigator)
-- **Expertise:** Hohe Domänenexpertise in Nachhaltigkeit, mittlere Data Literacy.
-- **Technik:** Desktop & Tablet (für Meetings).
-- **User Tasks:** Überwachung des aggregierten Absenkpfads der Gesamtorganisation; Vorbereitung des jährlichen Nachhaltigkeitsberichts.
-- **Pains:** Intransparenz über die Treiber in den dezentralen BUs; Sorge vor Greenwashing-Vorwürfen bei falscher Metrik-Wahl.
-- **Gains:** Sicherheit bei strategischen Entscheidungen; klare Kommunikation des Fortschritts gegenüber dem Verwaltungsrat.
-
-### Persona 2: Marc, Finanzcontroller (The Analytical Auditor)
-- **Expertise:** Sehr hohe Data Literacy, Fokus auf KPIs und Abweichungsanalysen.
-- **Technik:** Multi-Monitor-Setup; braucht Exportfunktionen (Excel/CSV).
-- **User Tasks:** Abgleich von Reisekosten (CHF) mit Emissionen; Identifikation von ineffizienten Ausreissern (z. B. teure Last-Minute-Business-Flüge).
-- **Pains:** Manuelle Aufbereitung fragmentierter Datenquellen; unklare Zuständigkeiten für CO₂-Budgets.
-- **Gains:** Automatisierte Berichte; "Audit-Ready"-Datenbasis durch klare Dokumentation der Emissionsfaktoren.
-
-### Value Proposition Canvas (Auszug):
-- **Jobs:** Budgeteinhaltung überwachen, Optimierungspotenzial finden.
-- **Pains:** Datenkomplexität (RFI), mühsame Fehlersuche in Tabellen.
-- **Gains:** Sofortige Sichtbarkeit von Hotspots; vertrauenswürdige Datengrundlage für Policy-Änderungen.
-
-## Situation Assessment
-- **Ressourcen:** Datensätze travel_data.csv (Transaktionsdaten) und co2_budgets.csv (Zielvorgaben). Team aus 3 Personen mit Python-Kenntnissen.
-
-- **Tools:** Python (Pandas, Plotly/Altair), Quarto für die Dokumentation, GitHub für Versionierung.
-
-- **Einschränkungen:** Projektlaufzeit gemäss Kurssemester. Fokus auf Nachvollziehbarkeit und Reproduzierbarkeit (kein Excel für Analysen).
-
-- **Risiken:** Inkonsistente IATA-Codes, fehlinterpretation der RFI-Szenarien durch Endnutzer, fehlende Daten für bestimmte Subunits in frühen Jahren.
-
-## Visualization Concept
-- **Product Form:** Interaktives Dashboard mit einer narrativen "Data Story"-Struktur (Context -> Insight -> Action).
-
-- **Visual Encodings:**
-
-    - **Bullet Graphs:** Vergleich von Ist-Emissionen vs. Budget pro BU (platzsparender als Tachos).
-
-    - **Sankey Diagram:** Darstellung des Flusses von BU über Reisezweck zum Transportmodus (Identifikation von Treibern).
-
-    - **Line Charts:** Darstellung des Absenkpfads über die Zeit (2017–2026).
-
-    - **Choropleth Map:** Visualisierung der meistbeflogenen Routen mit Hervorhebung von Strecken, auf denen Zug-Alternativen existieren.
-
-- **Interactivity:** Filter für Zeiträume, Business Units und Reisezwecke; Tooltips zur Erläuterung der RFI-Berechnung.
-
-- **Narrative:** Storytelling-Ansatz "Der Kampf gegen den Absenkpfad" – Dokumentation des Fortschritts und Aufzeigen notwendiger Kurskorrekturen.
-
-### Intended Value:
-
-- **Cognitive:** Bullet Graphs ermöglichen sofortigen Längenvergleich statt ungenauer Winkelinterpretation bei Gauges.
-
-- **Communicative:** Klare Annotationen erklären den "Well-to-Wake"-Ansatz und die Bedeutung von RFI.
-
-- **Experiential:** Ein ästhetisches, funktionales Design schafft Vertrauen und fördert die Akzeptanz des Tools als Steuerungsinstanz.
+### Regulatorischer Kontext *(sekundär)*
+Aggregierte Daten fliessen in das offizielle ESG-Reporting des Unternehmens ein (Art. 964a OR und EU CSRD). Berechnungen folgen Industriestandards (Defra, ICAO). Dies ist ein Sekundärzweck – das operative Dashboard für BU-Heads hat Vorrang.
 
 
-## Project Plan
-Die Parallelisierung von Aufgaben spiegelt die Aufgabenteilung innerhalb des Teams wider und gewährleistet eine effiziente Nutzung der Ressourcen.
+## Projektziele und Erfolgskriterien
+
+### Primäre Ziele *(Team Head / BU-Manager)*
+
+1. **Sichtbarkeit:** „Ich sehe jederzeit, wie viel meines jährlichen CO₂-Budgets verbraucht ist – mindestens monatlich aktualisiert."
+2. **Verständnis:** „Ich kann schnell erkennen, was unsere Emissionen treibt (welche Trips, Personen, Routen), und weiss, was zu tun ist."
+3. **Handlung:** „Ich habe eine kurze Liste konkreter Massnahmen, um im Budget zu bleiben (z. B. Route X von Flug auf Bahn umstellen)."
+
+### Erfolgskriterien
+
+**Nutzererlebnis:**
+- Ein Team Head kann die Frage „Sind wir im Budget? Wenn nicht, warum?" in unter 1 Minute beantworten
+- Mindestens 80 % der Testnutzer identifizieren eine konkrete Massnahme zur Emissionsreduktion
+- Das Dashboard ist ohne Datenkenntnisse auf dem Desktop bedienbar
+
+**Datenqualität:**
+- Emissionen konsistent nach Industriestandards (Defra/ICAO) berechnet
+- Beide RFI-Szenarien (2.0 und 2.7) sichtbar, sodass Unsicherheit transparent ist
+- Monatliche Datenaktualisierung; manuelle Fehler werden geprüft und markiert
+
+### Nicht im Scope
+- Echtzeit-Tracking oder automatisierte Reisegenehmigungen
+- Prädiktive Modelle für zukünftiges Reiseverhalten
+- Executives Dashboards für Nachhaltigkeitsberichte (Sekundäranwendungsfall, nicht Hauptfokus)
+- Integration mit Buchungssystemen
+
+### Sekundäre Ziele *(CSO / Finance)*
+- **CSO:** Aggregierte Monatsreports für den jährlichen ESG-Bericht (GRI/ESRS)
+- **Finance:** Lesezugriff auf Kosten-Emissions-Korrelation für Audit-Zwecke
+
+
+## Stakeholder-Analyse
+
+> **Wichtige Unterscheidung:** Team Heads und BU-Manager sind die **primären operativen Nutzer** — das Dashboard ist für ihren Arbeitsalltag gebaut. CSO und Finance sind Sekundärnutzer, die aggregierte Outputs erhalten; das Dashboard ist nicht für ihre spezifischen Anwendungsfälle optimiert.
+
+| Stakeholder | Rolle | Bedarf | Interaktion |
+|---|---|---|---|
+| **Team Head / BU-Manager** | **Primärnutzer (Operativ)** | Budget-Status des eigenen Teams einsehen; Emissionstreiber verstehen; konkrete Massnahmen finden | Loggt sich 1–2× pro Monat ein; nutzt interaktive Filter für Drill-down |
+| Chief Sustainability Officer (CSO) | Sponsor / Sekundärnutzer | Aggregierte Monatsreports für ESG-Compliance (GRI/ESRS) | Erhält Summary-Reports; Lesezugriff auf unternehmensweite Übersicht |
+| Finance / Controlling | Datenquelle / Sekundärnutzer | Kosten-Emissions-Korrelation für Audit; validiert Budgetdefinitionen | Liefert Kostendaten; gelegentliche CSV-Exporte für Prüfungen |
+| Mitarbeitende | Datenquelle | Ihre Reisen erzeugen die Daten (anonymisiert in Reports) | Keine direkten Nutzer; betroffen durch Reiserichtlinien |
+
+
+## Primäre User Persona
+
+### Sarah, BU-Leiterin Vertrieb – *„The Operational Owner"*
+- **Rolle:** Führt ein 15-köpfiges Vertriebsteam; verantwortlich für die Einhaltung des jährlichen CO₂-Budgets ihrer BU
+- **Expertise:** Hohe Domänenkenntnis (kennt Reisemuster ihres Teams); niedrige Data Literacy (kein Analyse-Hintergrund)
+- **Technik:** Desktop (Büro) + mobiler Check-in unterwegs
+- **Typische Woche:**
+  - **Montag:** Kurz prüfen: „Sind wir im Budget?" (2 Minuten)
+  - **Monatsende:** Deep Dive: „Welche Trips haben uns über Budget gebracht? Können wir nächsten Monat gegensteuern?"
+  - **Ad hoc:** Vor Genehmigung einer grossen Reise: „Haben wir noch Budget dafür?"
+
+- **Pain Points:**
+  - Kennt den Budget-Status erst, wenn Finance den Quartalsbericht schickt (zu spät zum Handeln)
+  - Kann nicht sehen, welche Teammitglieder oder Routen besonders emissionsintensiv sind
+  - Weiss nicht, ob für eine Strecke eine Zugalternative existiert
+  - Fachbegriffe wie RFI oder Emissionsfaktoren sind ihr unbekannt
+
+- **Gewünschte Ergebnisse:**
+  - „Ich kann meinem Team klar sagen: Wir haben 60 % unseres Budgets verbraucht – Priorität auf wichtige Reisen."
+  - „Ich kann den Trip identifizieren, der die Überschreitung verursacht hat, und bessere Entscheidungen treffen."
+  - „Ich verstehe meine Optionen (Flug vs. Bahn) und kann entsprechend genehmigen."
+
+---
+
+## Sekundäre Personas
+
+### Dr. Müller, Chief Sustainability Officer
+- **Rolle:** Verantwortlich für ESG-Reporting und Netto-Null-Ziele des Unternehmens
+- **Interaktion:** Monatlicher automatisierter Summary-Report + Lesezugriff auf unternehmensweite Trends
+- **Bedarf:** Aggregierte Daten für den Jahres-Nachhaltigkeitsbericht (GRI/ESRS)
+- **Nutzt nicht:** Tägliches Login; bevorzugt fertige Reports
+
+### Marc, Finance Controller
+- **Rolle:** Validiert Reisebudgets und Kosten-Emissions-Alignment
+- **Interaktion:** Monatlicher Datenexport (CSV) für Audit; gelegentliche Stichproben
+- **Bedarf:** Transparente Dokumentation der Emissionsberechnung + Exportmöglichkeit
+- **Nutzt nicht:** Interaktive Visualisierungen; bevorzugt Datentransparenz
+
+
+## Interaktionsszenario: „Sarahs Montagmorgen"
+
+**9:10 Uhr – Sarah öffnet das Dashboard:**
+
+1. **Erster Blick (Landing):** „BU-Status"
+   - Klare Kennzahl: „42 / 50 t CO₂ (84 % verbraucht)"
+   - Farbkodierung: Grün = im Budget | Rot = über Budget
+   - Status: „On track"
+
+2. **Zweite Frage (Drill-down):** „Was treibt das?"
+   - Tab „Emissionstreiber": Top-Trips nach Transportmodus, Reisezweck, Haul
+   - Erkenntnis: „Langstreckenflüge machen 60 % der Emissionen aus"
+
+3. **Dritter Gedanke (Massnahme):** „Können wir das verbessern?"
+   - Tab „Rail-First Chancen": Alle Flüge ihrer BU, für die eine Zugalternative existiert
+   - Ergebnis: Ranking der Routen nach CO₂-Emissionen – sie sieht, welche Flüge das grösste Einsparpotential haben
+   - Aktion: Sarah notiert die Top-Route; spricht beim nächsten Teammeeting an
+
+**Gesamtzeit: 2 Minuten. Sarah weiss genau, wo ihr Team steht.**
+
+---
+
+## Dashboard-Designprinzipien
+
+### Was gezeigt wird
+- **Budget-Status (erste Priorität):** Ist das Team im Budget? Wie viel ist noch übrig?
+- **Top-Treiber:** Welche Trips / Routen / Reisemittel verursachen 80 % der Emissionen?
+- **Rail-First Chancen:** Wo gibt es Flüge, für die eine Zugalternative existiert?
+- **Unsicherheitsbereich:** Beide RFI-Szenarien (2.0 und 2.7) wählbar, sodass die Bandbreite sichtbar ist
+
+### Info-Architektur (Streamlit-Tabs)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Geschaeftsreisen CO2 Dashboard                             │
+│  Filter: Business Unit | Jahr | CO2e Szenario (RFI) | ...  │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  [Budgetsteuerung] ← PRIMÄRER TAB für Team Heads           │
+│  └─ KPIs: CO2e Ist | Budget | Status | Reisen | Kosten     │
+│  └─ Grouped Bar Chart: Actual vs. Budget pro BU/Subunit    │
+│                                                             │
+│  [Emissionstreiber]                                        │
+│  └─ Bar Charts: nach Transportmodus | Reisezweck | Haul    │
+│  └─ Linienchart: CO2e-Entwicklung 2017–2026                │
+│                                                             │
+│  [Rail-First Chancen]                                      │
+│  └─ Flüge mit verfügbarer Zugalternative + CO2e-Einsparung │
+│                                                             │
+│  [CSO Vergleich]  ← Sekundär: aggregierter BU-Vergleich    │
+│  [Finance Quick View]  ← Sekundär: Kosten-Emissions-Audit  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Visuelle Kodierungen
+- **Grouped Bar Chart:** Budget vs. Actual pro BU/Subunit (direkter Längenvergleich)
+- **Bar Charts:** Emissionen nach Transportmodus, Reisezweck und Haul (Treiber-Ranking)
+- **Linienchart:** CO₂e-Entwicklung über die Zeit (saisonale Muster erkennbar)
+- **Tabellen mit Drill-down:** Rail-First-Routen, Finance-Detailansicht
+
+### Beschriftung und Tooltips
+- Kein Fachjargon im Default-View; technische Erklärungen in ausklappbaren Sections
+- „RFI 2.0 vs. 2.7" → Einfache Erklärung: „Zwei Berechnungsmethoden für Flug-Emissionen; wir zeigen beide, damit die Bandbreite sichtbar ist"
+- „Well-to-Wake" → Nicht für Team Heads sichtbar; nur in interner Dokumentation
+- „Modal Shift" → Im Dashboard als „Rail-First Chancen" bezeichnet
+
+### Narrative
+- **Nicht:** „Kampf gegen den Absenkpfad" (compliance-orientiert, management-fokussiert)
+- **Stattdessen:** „Context → Insight → Action" — Budget-Status zuerst, dann Treiber, dann konkrete Massnahmen
+
+
+## Situationsanalyse
+
+**Ressourcen:**
+- Datensätze: `travel_data.csv` (Transaktionsdaten) und `co2_budgets.csv` (Jahresvorgaben pro BU/Subunit)
+- Team: 3 Personen mit Python-Kenntnissen
+- Zeitrahmen: Ein Semester (März–Juni 2026)
+
+**Tools & Stack:**
+- Python (Pandas, Altair für Charts)
+- Streamlit für das interaktive Dashboard
+- Quarto für die Dokumentation
+- GitHub für Versionierung
+
+**Einschränkungen:**
+- Datenqualität: IATA-Codes inkonsistent; Bereinigung erforderlich
+- Kein direkter Zugriff auf Buchungssystem; monatliche Datensnapshots
+- Erstes Jahr des Tools; begrenzte historische Referenzdaten für einzelne Subunits
+- Budgetdaten im Datensatz für 2020–2025 vorhanden (andere Jahre: kein Budget-Vergleich möglich)
+
+**Risiken und Gegenmassnahmen:**
+- Risiko: Nutzer missverstehen RFI-Szenarien → Gegenmassnahme: Beide Szenarien mit einfachen Erklärungen zeigen; Unsicherheit in Tooltips hervorheben
+- Risiko: Dashboard wird zu komplex → Gegenmassnahme: MVP fokussiert auf Top-3-Features (Budgetsteuerung, Treiber, Rail-First); Sekundärfunktionen in separaten Tabs
+- Risiko: Emissionsberechnungen fehlerhaft → Gegenmassnahme: Validierung gegen Defra/ICAO-Standards; Audit-Trail für Finance
+
+
+## Visualisierungskonzept
+
+Das Dashboard folgt einer narrativen **„Context → Insight → Action"**-Struktur, die speziell für nicht-datenerfahrene Team Heads konzipiert ist:
+
+- **Produktform:** Interaktives Streamlit-Dashboard mit 5 Tabs; primärer Tab „Budgetsteuerung" steht an erster Stelle
+- **Charts:** Grouped Bar Charts (Budget vs. Actual), Bar Charts (Emissionstreiber), Linienchart (Trend 2017–2026)
+- **Interaktivität:** Sidebar-Filter für Jahr, Business Unit, CO₂e-Szenario (RFI), Transportmodus, Reisezweck und Haul; Tooltips für Details
+- **Sekundäre Tabs:** „CSO Vergleich" und „Finance Quick View" bewusst schlank gehalten – kein primärer Entwicklungsfokus
+
+### Mehrwert
+
+- **Kognitiv:** Grouped Bar Charts erlauben sofortigen Längenvergleich Budget vs. Actual – präziser als Tachos oder Kreisdiagramme
+- **Kommunikativ:** Tooltips und Tabellenansichten liefern Details auf Abruf, ohne die Übersicht zu überladen
+- **Erfahrungsmässig:** Kein Fachjargon im Default-View; technische Details nur bei explizitem Interesse sichtbar
+
+
+## Schlüsselbegriffe *(für Nutzer)*
+
+### RFI 2.0 vs. RFI 2.7
+Zwei wissenschaftliche Modelle zur Berechnung von Flug-Emissionen, die sich im Umgang mit Strahlungsantriebseffekten unterscheiden. RFI 2.7 berücksichtigt einen breiteren Satz von Klimaeffekten als RFI 2.0. **Nutzer-Erklärung:** „Zwei Berechnungsmethoden für Flug-Emissionen – wir zeigen beide, damit die Bandbreite sichtbar ist. Die Unternehmensrichtlinie bestimmt, welche Zahl ins offizielle Reporting fliesst."
+
+### CO₂-Budget
+Die jährliche Kohlenstoff-Zuteilung eines Teams in Tonnen CO₂. Bei 100 % ist das Jahresbudget aufgebraucht.
+
+### Rail-First (im Dashboard: „Rail-First Chancen")
+Ersatz eines Kurzstrecken- oder Mittelstreckenflugs durch eine Zugfahrt auf derselben Route. Im Dashboard als eigener Tab mit konkreten Einsparpotentialen dargestellt.
+
+### Well-to-Wake
+Vollständige Lifecycle-Emissionsberechnung für Flugkraftstoff (gemäss Defra/ICAO-Standards). Nicht als Label für Team Heads sichtbar – nur in interner Dokumentation und Tooltips auf Anfrage.
+
+
+## Projektplan
+Die Parallelisierung der Aufgaben spiegelt die Aufgabenteilung im Team wider und gewährleistet eine effiziente Ressourcennutzung.
 
 ```{mermaid}
 %%| label: fig-project-plan
-%%| fig-cap: Vorläufiger Zeitplan des Visualisierungsprojekts.
+%%| fig-cap: Projektzeitplan (März–Juni 2026)
 gantt
     title Projekt Zeitplan 2026
     dateFormat YYYY-MM-DD
@@ -126,7 +265,7 @@ gantt
 
     section Design & Entwicklung
         Vis-Konzept & Wireframes                   :c1, 2026-04-03, 7d
-        Entwicklung Charts (Bullet, Sankey etc.)   :c2, 2026-04-08, 14d
+        Entwicklung Charts (Grouped Bar, Trend)    :c2, 2026-04-08, 14d
         Dashboard Prototyping (Streamlit)          :c3, 2026-04-15, 18d
 
     section Finalisierung
@@ -137,9 +276,10 @@ gantt
         Abgabe Visualisierungsprojekt              :milestone, m3, 2026-06-01, 0d
 ```
 
-See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
+Siehe [Mermaid Syntax für Gantt-Charts](https://mermaid.js.org/syntax/gantt.html). Wird in Safari möglicherweise nicht korrekt angezeigt &#8594; Chrome verwenden. [Live-Editor mit Exportfunktion](https://mermaid.live/)
 
-## Roles and Contact Details
-- **Projektleitung & Storytelling:** Fiton Sallahaj, Verantwortlich für Stakeholder-Alignment und narrativen Fluss.
-- **Data Engineer:** Christopher Zickler, Verantwortlich für die Python-Pipeline und CO₂-Berechnungen (RFI).
-- **Visualisierungs-Designer:** Villavarayasingam Gopigan, Verantwortlich für das UI/UX Design und die Umsetzung der interaktiven Charts.
+## Rollen und Verantwortlichkeiten
+
+- **Projektleitung & Storytelling:** Fiton Sallahaj — Verantwortlich für Stakeholder-Alignment und narrativen Fluss
+- **Data Engineering:** Christopher Zickler — Verantwortlich für die Python-Pipeline, CO₂-Berechnungen (RFI-Szenarien) und Datenqualität
+- **Visualisierung & Design:** Villavarayasingam Gopigan — Verantwortlich für UI/UX-Design und Implementierung der interaktiven Charts in Streamlit
