@@ -40,6 +40,78 @@ MONTHS = {
     "Dezember": 12,
 }
 
+# -----------------------------------------------------------------------------
+# Mapping-Dictionary für deutsche Spaltennamen im UI
+# -----------------------------------------------------------------------------
+DISPLAY_NAMES_DE = {
+    "date": "Datum",
+    "year": "Jahr",
+    "month": "Monat",
+    "business_unit": "Geschäftsbereich",
+    "subunit": "Abteilung",
+    "transport_mode": "Verkehrsmittel",
+    "travel_purpose": "Reisezweck",
+    "haul": "Distanzklasse",
+    "departure_city": "Abreiseort",
+    "arrival_city": "Ankunftsort",
+    "departure_country": "Abreiseland",
+    "arrival_country": "Ankunftsland",
+    "km": "Distanz (km)",
+    "cost_CHF": "Kosten (CHF)",
+    "train_alternative_available": "Bahnalternative verfügbar",
+    "cost_per_t_co2e": "Kosten pro t CO₂e",
+    "co2_budget_t": "CO₂-Budget (t)",
+    "actual_t": "Ist CO₂e (t)",
+    "budget_t": "Budget (t)",
+    "remaining_t": "Rest (t)",
+    "budget_used_pct": "Budgetverbrauch",
+    "trips": "Reisen",
+    "cost_chf": "Kosten (CHF)",
+    "status": "Status",
+    "Einheit": "Einheit",
+    "route": "Route",
+    "emissions_t": "CO₂e (t)",
+    "avg_km": "Ø km",
+    "annual_emissions_t": "Jahres-Emissionen (t)",
+    "annual_trips": "Jahres-Reisen",
+    "annual_cost_chf": "Jahreskosten (CHF)",
+    "report_period_emissions_t": "Perioden-Emissionen (t)",
+    "report_period_trips": "Perioden-Reisen",
+    "CO2e RFI2 (t)": "CO₂e RFI 2.0 (t)",
+    "CO2e RFI2.7 (t)": "CO₂e RFI 2.7 (t)"
+}
+
+# Bekannte Übersetzungen für Datenwerte (Englisch → Deutsch)
+# Unbekannte Werte werden automatisch bereinigt: "site_visit" → "Site Visit"
+VALUE_TRANSLATIONS_DE = {
+    "flight": "Flug",
+    "train": "Bahn",
+    "rental_car": "Mietwagen",
+    "bus": "Bus",
+    "car": "Auto",
+    "ferry": "Fähre",
+    "taxi": "Taxi",
+    "long haul": "Langstrecke",
+    "mid haul": "Mittelstrecke",
+    "short haul": "Kurzstrecke",
+    "ground": "Boden",
+    "client_meeting": "Kundengespräch",
+    "internal_meeting": "Internes Meeting",
+    "site_visit": "Standortbesuch",
+    "trade_fair": "Messe",
+    "training": "Schulung",
+    "workshop": "Workshop",
+    "conference": "Konferenz",
+    "other": "Sonstiges",
+}
+
+def translate_value(v):
+    """Übersetzt einen Datenwert. Fallback: Unterstriche entfernen und Title Case."""
+    s = str(v)
+    if s in VALUE_TRANSLATIONS_DE:
+        return VALUE_TRANSLATIONS_DE[s]
+    return s.replace("_", " ").title()
+
 STATUS_GREEN = "#1f8a5b"
 STATUS_RED = "#c93838"
 STATUS_AMBER = "#b7791f"
@@ -60,8 +132,15 @@ st.set_page_config(
 # 2. Data loading and preprocessing
 # -----------------------------------------------------------------------------
 
+def _file_mtimes():
+    """Gibt Änderungszeiten der Datendateien zurück — Cache wird automatisch ungültig wenn Dateien sich ändern."""
+    times = []
+    for p in [TRAVEL_CSV, BUDGET_CSV, ALT_TRAVEL_CSV, ALT_BUDGET_CSV, EXCEL_FALLBACK]:
+        times.append(p.stat().st_mtime if p.exists() else 0)
+    return tuple(times)
+
 @st.cache_data(show_spinner=False)
-def load_data():
+def load_data(_mtimes):
     if TRAVEL_CSV.exists() and BUDGET_CSV.exists():
         travel = pd.read_csv(TRAVEL_CSV)
         budgets = pd.read_csv(BUDGET_CSV)
@@ -192,14 +271,14 @@ def sidebar_filters(travel):
         st.title("Filter")
 
         view = st.radio(
-            "View",
+            "Ansicht",
             ["BU-Leitung", "CSO Report", "Finance Report"],
             index=0,
             help="BU-Leitung ist die operative Standardsicht. CSO und Finance erhalten kompakte Report-Sichten.",
         )
 
         business_units = sorted(travel["business_unit"].dropna().unique())
-        selected_bu = st.selectbox("Business Unit", ["Alle"] + business_units, index=1)
+        selected_bu = st.selectbox(DISPLAY_NAMES_DE.get("business_unit", "Business Unit"), ["Alle"] + business_units, index=1)
 
         if selected_bu == "Alle":
             subunits = sorted(travel["subunit"].dropna().unique())
@@ -209,13 +288,13 @@ def sidebar_filters(travel):
                 .dropna()
                 .unique()
             )
-        selected_subunit = st.selectbox("Subunit", ["Alle"] + subunits, index=0)
+        selected_subunit = st.selectbox(DISPLAY_NAMES_DE.get("subunit", "Subunit"), ["Alle"] + subunits, index=0)
 
         years = sorted(int(y) for y in travel["year"].dropna().unique())
         default_year = 2025 if 2025 in years else years[-1]
-        selected_year = st.selectbox("Jahr", years, index=years.index(default_year))
+        selected_year = st.selectbox(DISPLAY_NAMES_DE.get("year", "Jahr"), years, index=years.index(default_year))
 
-        selected_month_label = st.selectbox("Monat", list(MONTHS.keys()), index=0)
+        selected_month_label = st.selectbox(DISPLAY_NAMES_DE.get("month", "Monat"), list(MONTHS.keys()), index=0)
         selected_month = MONTHS[selected_month_label]
 
         selected_rfi = st.radio(
@@ -235,9 +314,9 @@ def sidebar_filters(travel):
             purposes = sorted(travel["travel_purpose"].dropna().unique())
             hauls = sorted(travel["haul"].dropna().unique())
 
-            selected_modes = st.multiselect("Transportmodus", modes, default=modes)
-            selected_purposes = st.multiselect("Reisezweck", purposes, default=purposes)
-            selected_hauls = st.multiselect("Haul", hauls, default=hauls)
+            selected_modes = st.multiselect(DISPLAY_NAMES_DE.get("transport_mode", "Transportmodus"), modes, default=modes)
+            selected_purposes = st.multiselect(DISPLAY_NAMES_DE.get("travel_purpose", "Reisezweck"), purposes, default=purposes)
+            selected_hauls = st.multiselect(DISPLAY_NAMES_DE.get("haul", "Haul"), hauls, default=hauls)
 
         return {
             "view": view,
@@ -466,11 +545,13 @@ def grouped_budget_chart(summary, group_col):
         var_name="metric",
         value_name="tonnes",
     ).dropna(subset=["tonnes"])
+    
+    # Hier verwenden wir direkt deutsche Bezeichnungen für die Anzeige
     long_data["metric"] = long_data["metric"].map(
-        {"actual_t": "Actual CO₂e", "budget_t": "Budget"}
+        {"actual_t": "Ist CO₂e", "budget_t": "Budget"}
     )
 
-    metric_order = ["Actual CO₂e", "Budget"]
+    metric_order = ["Ist CO₂e", "Budget"]
     chart = (
         alt.Chart(long_data)
         .mark_bar(cornerRadiusEnd=3, height=16)
@@ -494,7 +575,7 @@ def grouped_budget_chart(summary, group_col):
             ],
         )
         .properties(
-            title="Actual vs Budget",
+            title="Ist vs. Budget",
             height=max(260, min(520, 72 * len(chart_data))),
             padding={"bottom": 18, "left": 4, "right": 8, "top": 12},
         )
@@ -514,15 +595,21 @@ def ranked_bar(df, category_col, value_col, title, limit=10, color=BLUE, x_title
         .head(limit)
     )
 
+    cat_title = DISPLAY_NAMES_DE.get(category_col, "Kategorie")
+    # Datenwerte übersetzen, Fallback: Unterstriche entfernen + Title Case
+    data[category_col] = data[category_col].map(translate_value)
+    # Spaltennamen auf deutschen Anzeigenamen umbenennen
+    data = data.rename(columns={category_col: cat_title})
+
     return (
         alt.Chart(data)
         .mark_bar(cornerRadiusEnd=5)
         .encode(
             x=alt.X("value:Q", title=x_title),
-            y=alt.Y(f"{category_col}:N", title=None, sort="-x"),
+            y=alt.Y(f"{cat_title}:N", title=None, sort="-x"),
             color=alt.value(color),
             tooltip=[
-                alt.Tooltip(f"{category_col}:N", title="Kategorie"),
+                alt.Tooltip(f"{cat_title}:N", title=cat_title),
                 alt.Tooltip("value:Q", title="t CO₂e", format=",.1f"),
             ],
         )
@@ -554,8 +641,8 @@ def trend_chart(df, emission_col, group_col=None):
         ],
     }
     if group_col:
-        enc["color"] = alt.Color(f"{group_col}:N", title=None)
-        enc["tooltip"].append(alt.Tooltip(f"{group_col}:N", title="Gruppe"))
+        enc["color"] = alt.Color(f"{group_col}:N", title=DISPLAY_NAMES_DE.get(group_col, "Gruppe"))
+        enc["tooltip"].append(alt.Tooltip(f"{group_col}:N", title=DISPLAY_NAMES_DE.get(group_col, "Gruppe")))
 
     return alt.Chart(data).mark_line(point=True, strokeWidth=3).encode(**enc).properties(height=320)
 
@@ -803,7 +890,7 @@ def render_report_summary(items, columns=4):
 
 
 def render_status_context(context, filters):
-    st.subheader("Context")
+    st.subheader("Kontext")
     delta = budget_delta(context)
 
     c1, c2 = st.columns([0.86, 1.14])
@@ -885,24 +972,19 @@ def render_bu_view(travel, budgets, filters, context):
     with tab_budget:
         group_col = "business_unit" if filters["business_unit"] == "Alle" else "subunit"
         summary = budget_summary(annual_df, budgets, filters, group_col)
+        
+        # Umbenennung des Gruppen-Keys für das Dictionary Mapping
+        summary_display = summary.copy()
+        if group_col in summary_display.columns:
+            summary_display.rename(columns={group_col: "Einheit"}, inplace=True)
+            
         chart = grouped_budget_chart(summary, group_col)
         if chart is None:
             render_empty()
         else:
             st.altair_chart(chart, use_container_width=True)
             st.dataframe(
-                summary.rename(
-                    columns={
-                        group_col: "Einheit",
-                        "actual_t": "Ist CO₂e t",
-                        "budget_t": "Budget t",
-                        "remaining_t": "Rest t",
-                        "budget_used_pct": "Budgetverbrauch",
-                        "trips": "Reisen",
-                        "cost_chf": "Kosten CHF",
-                        "status": "Status",
-                    }
-                ),
+                summary_display.rename(columns=DISPLAY_NAMES_DE),
                 use_container_width=True,
                 hide_index=True,
             )
@@ -953,15 +1035,7 @@ def render_bu_view(travel, budgets, filters, context):
                 use_container_width=True,
             )
             st.dataframe(
-                routes.rename(
-                    columns={
-                        "route": "Route",
-                        "trips": "Flüge",
-                        "emissions_t": "CO₂e t",
-                        "cost_chf": "Kosten CHF",
-                        "avg_km": "Ø km",
-                    }
-                ),
+                routes.rename(columns=DISPLAY_NAMES_DE),
                 use_container_width=True,
                 hide_index=True,
             )
@@ -992,7 +1066,7 @@ def render_bu_view(travel, budgets, filters, context):
                 "train_alternative_available",
             ]
             st.dataframe(
-                period_df[detail_cols].sort_values(emission_col, ascending=False).head(300),
+                period_df[detail_cols].sort_values(emission_col, ascending=False).head(300).rename(columns=DISPLAY_NAMES_DE),
                 use_container_width=True,
                 hide_index=True,
             )
@@ -1055,20 +1129,7 @@ def render_cso_report(travel, budgets, filters, context):
         )
         st.markdown("#### Aggregierte Daten für den Nachhaltigkeitsbericht")
         st.dataframe(
-            cso_report.rename(
-                columns={
-                    "business_unit": "Business Unit",
-                    "annual_emissions_t": "Jahres-Ist CO₂e t",
-                    "budget_t": "Budget t",
-                    "remaining_t": "Budgetsaldo t",
-                    "budget_used_pct": "Budgetverbrauch",
-                    "annual_trips": "Jahresreisen",
-                    "annual_cost_chf": "Jahreskosten CHF",
-                    "report_period_emissions_t": "Reportzeitraum CO₂e t",
-                    "report_period_trips": "Reportzeitraum Reisen",
-                    "status": "Status",
-                }
-            ),
+            cso_report.rename(columns=DISPLAY_NAMES_DE),
             use_container_width=True,
             hide_index=True,
         )
@@ -1096,7 +1157,7 @@ def render_cso_report(travel, budgets, filters, context):
             use_container_width=True,
             key="cso_report_download_export",
         )
-        st.dataframe(cso_report, use_container_width=True, hide_index=True)
+        st.dataframe(cso_report.rename(columns=DISPLAY_NAMES_DE), use_container_width=True, hide_index=True)
 
 
 def render_finance_report(filters, context):
@@ -1170,15 +1231,7 @@ def render_finance_report(filters, context):
         )
 
         st.dataframe(
-            summary.rename(
-                columns={
-                    "transport_mode": "Transport mode",
-                    "trips": "Trips",
-                    "emissions_t": "CO₂e t",
-                    "cost_chf": "Cost CHF",
-                    "cost_per_t_co2e": "Cost per t CO₂e",
-                }
-            ),
+            summary.rename(columns=DISPLAY_NAMES_DE),
             use_container_width=True,
             hide_index=True,
         )
@@ -1214,7 +1267,7 @@ def render_finance_report(filters, context):
 
     with tab_sample:
         st.markdown("#### High-cost / high-emission Stichprobe")
-        st.dataframe(finance_report.head(300), use_container_width=True, hide_index=True)
+        st.dataframe(finance_report.head(300).rename(columns=DISPLAY_NAMES_DE), use_container_width=True, hide_index=True)
 
     with tab_export:
         st.download_button(
@@ -1225,7 +1278,7 @@ def render_finance_report(filters, context):
             use_container_width=True,
             key="finance_report_download_export",
         )
-        st.dataframe(finance_report.head(300), use_container_width=True, hide_index=True)
+        st.dataframe(finance_report.head(300).rename(columns=DISPLAY_NAMES_DE), use_container_width=True, hide_index=True)
 
 
 # -----------------------------------------------------------------------------
@@ -1234,7 +1287,7 @@ def render_finance_report(filters, context):
 
 def main():
     inject_css()
-    travel, budgets = load_data()
+    travel, budgets = load_data(_mtimes=_file_mtimes())
     filters = sidebar_filters(travel)
     context = calculate_context(travel, budgets, filters)
 
